@@ -14,6 +14,12 @@
 #include <stdio.h>
 
 
+#define PI 3.14158265f
+#define FOV (PI / 4.0f)
+#define ASPECT_RATIO (WIN_WIDTH / (float)WIN_HEIGHT)
+#define NEAR_PLANE 1
+#define FAR_PLANE 10000
+
 //----------------------------------------------------------------------
 // 전역변수
 //----------------------------------------------------------------------
@@ -26,8 +32,10 @@ LPDIRECT3DDEVICE9       gpD3DDevice		= NULL;				// D3D 장치
 ID3DXFont*              gpFont			= NULL;
 
 // 모델
+LPD3DXMESH gpSphere = NULL;
 
 // 쉐이더
+LPD3DXEFFECT gpColorShader = NULL;
 
 // 텍스처
 
@@ -159,6 +167,42 @@ void RenderFrame()
 // 3D 물체등을 그린다.
 void RenderScene()
 {
+
+	// 뷰행렬 초기화.
+	D3DXMATRIXA16 matView;
+	D3DXVECTOR3 vEyePt(0.0f, 0.0f, -200.0f);
+	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
+	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);
+	D3DXMatrixLookAtLH(&matView, &vEyePt, &vLookatPt, &vUpVec);
+
+
+	// 투영행렬 초기화.
+	D3DXMATRIXA16 matProjection;
+	D3DXMatrixPerspectiveFovLH(&matProjection, FOV, ASPECT_RATIO, NEAR_PLANE, FAR_PLANE);
+
+
+	// 월드행렬 초기화.
+	D3DXMATRIXA16 matWorld;
+	D3DXMatrixIdentity(&matWorld);
+
+
+	// 쉐이더에 전달.
+	gpColorShader->SetMatrix("gWorldMatrix", &matWorld);
+	gpColorShader->SetMatrix("gViewMatrix", &matView);
+	gpColorShader->SetMatrix("gProjectionMatrix", &matProjection);
+
+	// 쉐이더 적용.
+	UINT numPasses = 0;
+	gpColorShader->Begin(&numPasses, NULL);
+	for (UINT i = 0; i < numPasses; ++i) {
+		gpColorShader->BeginPass(i);
+
+		gpSphere->DrawSubset(0);
+
+		gpColorShader->EndPass();
+	}
+	gpColorShader->End();
+
 }
 
 // 디버그 정보 등을 출력.
@@ -251,8 +295,14 @@ bool LoadAssets()
 	// 텍스처 로딩
 
 	// 쉐이더 로딩
+	gpColorShader = LoadShader("ColorShader.fx");
+	if (!gpColorShader)
+		return false;
 
 	// 모델 로딩
+	gpSphere = LoadModel("sphere.x");
+	if (!gpSphere)
+		return false;
 
 	return true;
 }
@@ -332,8 +382,16 @@ void Cleanup()
 	}
 
 	// 모델을 release 한다.
+	if (gpSphere) {
+		gpSphere->Release();
+		gpSphere = NULL;
+	}
 
 	// 쉐이더를 release 한다.
+	if (gpColorShader) {
+		gpColorShader->Release();
+		gpColorShader = NULL;
+	}
 
 	// 텍스처를 release 한다.
 
