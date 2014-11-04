@@ -2,9 +2,9 @@
 //
 // ShaderFramework.cpp
 // 
-// ½¦ÀÌ´õ µ¥¸ð¸¦ À§ÇÑ C½ºÅ¸ÀÏÀÇ ÃÊ°£´Ü ÇÁ·¹ÀÓ¿öÅ©ÀÔ´Ï´Ù.
-// (½ÇÁ¦ °ÔÀÓÀ» ÄÚµùÇÏ½Ç ¶§´Â Àý´ë ÀÌ·¸°Ô ÇÁ·¹ÀÓ¿öÅ©¸¦
-// ÀÛ¼ºÇÏ½Ã¸é ¾ÈµË´Ï´Ù. -_-)
+// ì‰ì´ë” ë°ëª¨ë¥¼ ìœ„í•œ CìŠ¤íƒ€ì¼ì˜ ì´ˆê°„ë‹¨ í”„ë ˆìž„ì›Œí¬ìž…ë‹ˆë‹¤.
+// (ì‹¤ì œ ê²Œìž„ì„ ì½”ë”©í•˜ì‹¤ ë•ŒëŠ” ì ˆëŒ€ ì´ë ‡ê²Œ í”„ë ˆìž„ì›Œí¬ë¥¼
+// ìž‘ì„±í•˜ì‹œë©´ ì•ˆë©ë‹ˆë‹¤. -_-)
 //
 // Author: Pope Kim
 //
@@ -21,48 +21,48 @@
 #define FAR_PLANE 10000
 
 //----------------------------------------------------------------------
-// Àü¿ªº¯¼ö
+// ì „ì—­ë³€ìˆ˜
 //----------------------------------------------------------------------
 
-// D3D °ü·Ã
+// D3D ê´€ë ¨
 LPDIRECT3D9             gpD3D			= NULL;				// D3D
-LPDIRECT3DDEVICE9       gpD3DDevice		= NULL;				// D3D ÀåÄ¡
+LPDIRECT3DDEVICE9       gpD3DDevice		= NULL;				// D3D ìž¥ì¹˜
 
-// ÆùÆ®
+// í°íŠ¸
 ID3DXFont*              gpFont			= NULL;
 
-// ¸ðµ¨
+// ëª¨ë¸
 LPD3DXMESH gpSphere = NULL;
 
-// ½¦ÀÌ´õ
+// ì‰ì´ë”
 LPD3DXEFFECT gpColorShader = NULL;
 
-// ÅØ½ºÃ³
+// í…ìŠ¤ì²˜
 
-// ÇÁ·Î±×·¥ ÀÌ¸§
-const char*				gAppName		= "ÃÊ°£´Ü ½¦ÀÌ´õ µ¥¸ð ÇÁ·¹ÀÓ¿öÅ©";
+// í”„ë¡œê·¸ëž¨ ì´ë¦„
+const char*				gAppName		= "ì´ˆê°„ë‹¨ ì‰ì´ë” ë°ëª¨ í”„ë ˆìž„ì›Œí¬";
 
 
 //-----------------------------------------------------------------------
-// ÇÁ·Î±×·¥ ÁøÀÔÁ¡/¸Þ½ÃÁö ·çÇÁ
+// í”„ë¡œê·¸ëž¨ ì§„ìž…ì /ë©”ì‹œì§€ ë£¨í”„
 //-----------------------------------------------------------------------
 
-// ÁøÀÔÁ¡
+// ì§„ìž…ì 
 INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 {
-    // À©µµ¿ì Å¬·¡½º¸¦ µî·ÏÇÑ´Ù.
+    // ìœˆë„ìš° í´ëž˜ìŠ¤ë¥¼ ë“±ë¡í•œë‹¤.
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L,
                       GetModuleHandle(NULL), NULL, NULL, NULL, NULL,
                       gAppName, NULL };
     RegisterClassEx( &wc );
 
-    // ÇÁ·Î±×·¥ Ã¢À» »ý¼ºÇÑ´Ù.
+    // í”„ë¡œê·¸ëž¨ ì°½ì„ ìƒì„±í•œë‹¤.
 	DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
     HWND hWnd = CreateWindow( gAppName, gAppName,
                               style, CW_USEDEFAULT, 0, WIN_WIDTH, WIN_HEIGHT,
                               GetDesktopWindow(), NULL, wc.hInstance, NULL );
 
-	// Client Rect Å©±â°¡ WIN_WIDTH, WIN_HEIGHT¿Í °°µµ·Ï Å©±â¸¦ Á¶Á¤ÇÑ´Ù.
+	// Client Rect í¬ê¸°ê°€ WIN_WIDTH, WIN_HEIGHTì™€ ê°™ë„ë¡ í¬ê¸°ë¥¼ ì¡°ì •í•œë‹¤.
 	POINT ptDiff;
 	RECT rcClient, rcWindow;
 	
@@ -75,11 +75,11 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     ShowWindow( hWnd, SW_SHOWDEFAULT );
     UpdateWindow( hWnd );
 
-	// D3D¸¦ ºñ·ÔÇÑ ¸ðµç °ÍÀ» ÃÊ±âÈ­ÇÑ´Ù.
+	// D3Dë¥¼ ë¹„ë¡¯í•œ ëª¨ë“  ê²ƒì„ ì´ˆê¸°í™”í•œë‹¤.
 	if( !InitEverything(hWnd) )
 		PostQuitMessage(1);
 
-	// ¸Þ½ÃÁö ·çÇÁ
+	// ë©”ì‹œì§€ ë£¨í”„
     MSG msg;
     ZeroMemory(&msg, sizeof(msg));
     while(msg.message!=WM_QUIT)
@@ -89,7 +89,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
             TranslateMessage( &msg );
             DispatchMessage( &msg );
         }
-        else // ¸Þ½ÃÁö°¡ ¾øÀ¸¸é °ÔÀÓÀ» ¾÷µ¥ÀÌÆ®ÇÏ°í Àå¸éÀ» ±×¸°´Ù
+        else // ë©”ì‹œì§€ê°€ ì—†ìœ¼ë©´ ê²Œìž„ì„ ì—…ë°ì´íŠ¸í•˜ê³  ìž¥ë©´ì„ ê·¸ë¦°ë‹¤
 		{
 			PlayDemo();
 		}
@@ -99,7 +99,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     return 0;
 }
 
-// ¸Þ½ÃÁö Ã³¸®±â
+// ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
     switch( msg )
@@ -117,12 +117,12 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     return DefWindowProc( hWnd, msg, wParam, lParam );
 }
 
-// Å°º¸µå ÀÔ·ÂÃ³¸®
+// í‚¤ë³´ë“œ ìž…ë ¥ì²˜ë¦¬
 void ProcessInput( HWND hWnd, WPARAM keyPress)
 {
 	switch(keyPress)
 	{
-	// ESC Å°°¡ ´­¸®¸é ÇÁ·Î±×·¥À» Á¾·áÇÑ´Ù.
+	// ESC í‚¤ê°€ ëˆŒë¦¬ë©´ í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•œë‹¤.
 	case VK_ESCAPE:
 		PostMessage(hWnd, WM_DESTROY, 0L, 0L);
 		break;
@@ -130,7 +130,7 @@ void ProcessInput( HWND hWnd, WPARAM keyPress)
 }
 
 //------------------------------------------------------------
-// °ÔÀÓ·çÇÁ
+// ê²Œìž„ë£¨í”„
 //------------------------------------------------------------
 void PlayDemo()
 {
@@ -138,25 +138,25 @@ void PlayDemo()
     RenderFrame();
 }
 
-// °ÔÀÓ·ÎÁ÷ ¾÷µ¥ÀÌÆ®
+// ê²Œìž„ë¡œì§ ì—…ë°ì´íŠ¸
 void Update()
 {
 }
 
 //------------------------------------------------------------
-// ·»´õ¸µ
+// ë Œë”ë§
 //------------------------------------------------------------
 
 void RenderFrame()
 {
-	D3DCOLOR bgColour = 0xFF0000FF;	// ¹è°æ»ö»ó - ÆÄ¶û
+	D3DCOLOR bgColour = 0xFF0000FF;	// ë°°ê²½ìƒ‰ìƒ - íŒŒëž‘
 
     gpD3DDevice->Clear( 0, NULL, (D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER), bgColour, 1.0f, 0 );
 
     gpD3DDevice->BeginScene();
     {
-		RenderScene();				// 3D ¹°Ã¼µîÀ» ±×¸°´Ù.
-		RenderInfo();				// µð¹ö±× Á¤º¸ µîÀ» Ãâ·ÂÇÑ´Ù.
+		RenderScene();				// 3D ë¬¼ì²´ë“±ì„ ê·¸ë¦°ë‹¤.
+		RenderInfo();				// ë””ë²„ê·¸ ì •ë³´ ë“±ì„ ì¶œë ¥í•œë‹¤.
     }
 	gpD3DDevice->EndScene();
 
@@ -164,11 +164,11 @@ void RenderFrame()
 }
 
 
-// 3D ¹°Ã¼µîÀ» ±×¸°´Ù.
+// 3D ë¬¼ì²´ë“±ì„ ê·¸ë¦°ë‹¤.
 void RenderScene()
 {
 
-	// ºäÇà·Ä ÃÊ±âÈ­.
+	// ë·°í–‰ë ¬ ì´ˆê¸°í™”.
 	D3DXMATRIXA16 matView;
 	D3DXVECTOR3 vEyePt(0.0f, 0.0f, -200.0f);
 	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
@@ -176,22 +176,22 @@ void RenderScene()
 	D3DXMatrixLookAtLH(&matView, &vEyePt, &vLookatPt, &vUpVec);
 
 
-	// Åõ¿µÇà·Ä ÃÊ±âÈ­.
+	// íˆ¬ì˜í–‰ë ¬ ì´ˆê¸°í™”.
 	D3DXMATRIXA16 matProjection;
 	D3DXMatrixPerspectiveFovLH(&matProjection, FOV, ASPECT_RATIO, NEAR_PLANE, FAR_PLANE);
 
 
-	// ¿ùµåÇà·Ä ÃÊ±âÈ­.
+	// ì›”ë“œí–‰ë ¬ ì´ˆê¸°í™”.
 	D3DXMATRIXA16 matWorld;
 	D3DXMatrixIdentity(&matWorld);
 
 
-	// ½¦ÀÌ´õ¿¡ Àü´Þ.
+	// ì‰ì´ë”ì— ì „ë‹¬.
 	gpColorShader->SetMatrix("gWorldMatrix", &matWorld);
 	gpColorShader->SetMatrix("gViewMatrix", &matView);
 	gpColorShader->SetMatrix("gProjectionMatrix", &matProjection);
 
-	// ½¦ÀÌ´õ Àû¿ë.
+	// ì‰ì´ë” ì ìš©.
 	UINT numPasses = 0;
 	gpColorShader->Begin(&numPasses, NULL);
 	for (UINT i = 0; i < numPasses; ++i) {
@@ -205,41 +205,41 @@ void RenderScene()
 
 }
 
-// µð¹ö±× Á¤º¸ µîÀ» Ãâ·Â.
+// ë””ë²„ê·¸ ì •ë³´ ë“±ì„ ì¶œë ¥.
 void RenderInfo()
 {
-	// ÅØ½ºÆ® »ö»ó
+	// í…ìŠ¤íŠ¸ ìƒ‰ìƒ
 	D3DCOLOR fontColor = D3DCOLOR_ARGB(255,255,255,255);    
 
-	// ÅØ½ºÆ®¸¦ Ãâ·ÂÇÒ À§Ä¡
+	// í…ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•  ìœ„ì¹˜
 	RECT rct;
 	rct.left=5;
 	rct.right=WIN_WIDTH / 3;
 	rct.top=5;
 	rct.bottom = WIN_HEIGHT / 3;
 	 
-	// Å° ÀÔ·Â Á¤º¸¸¦ Ãâ·Â
-	gpFont->DrawText(NULL, "µ¥¸ð ÇÁ·¹ÀÓ¿öÅ©\n\nESC: µ¥¸ðÁ¾·á", -1, &rct, 0, fontColor );
+	// í‚¤ ìž…ë ¥ ì •ë³´ë¥¼ ì¶œë ¥
+	gpFont->DrawText(NULL, "ë°ëª¨ í”„ë ˆìž„ì›Œí¬\n\nESC: ë°ëª¨ì¢…ë£Œ", -1, &rct, 0, fontColor );
 }
 
 //------------------------------------------------------------
-// ÃÊ±âÈ­ ÄÚµå
+// ì´ˆê¸°í™” ì½”ë“œ
 //------------------------------------------------------------
 bool InitEverything(HWND hWnd)
 {
-	// D3D¸¦ ÃÊ±âÈ­
+	// D3Dë¥¼ ì´ˆê¸°í™”
 	if( !InitD3D(hWnd) )
 	{
 		return false;
 	}
 	
-	// ¸ðµ¨, ½¦ÀÌ´õ, ÅØ½ºÃ³µîÀ» ·Îµù
+	// ëª¨ë¸, ì‰ì´ë”, í…ìŠ¤ì²˜ë“±ì„ ë¡œë”©
 	if( !LoadAssets() )
 	{
 		return false;
 	}
 
-	// ÆùÆ®¸¦ ·Îµù
+	// í°íŠ¸ë¥¼ ë¡œë”©
     if(FAILED(D3DXCreateFont( gpD3DDevice, 20, 10, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, 
                            OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, (DEFAULT_PITCH | FF_DONTCARE), 
                            "Arial", &gpFont )))
@@ -250,17 +250,17 @@ bool InitEverything(HWND hWnd)
 	return true;
 }
 
-// D3D °´Ã¼ ¹× ÀåÄ¡ ÃÊ±âÈ­
+// D3D ê°ì²´ ë° ìž¥ì¹˜ ì´ˆê¸°í™”
 bool InitD3D(HWND hWnd)
 {
-    // D3D °´Ã¼
+    // D3D ê°ì²´
     gpD3D = Direct3DCreate9( D3D_SDK_VERSION );
 	if ( !gpD3D )
 	{
 		return false;
 	}
 
-    // D3DÀåÄ¡¸¦ »ý¼ºÇÏ´Âµ¥ ÇÊ¿äÇÑ ±¸Á¶Ã¼¸¦ Ã¤¿ö³Ö´Â´Ù.
+    // D3Dìž¥ì¹˜ë¥¼ ìƒì„±í•˜ëŠ”ë° í•„ìš”í•œ êµ¬ì¡°ì²´ë¥¼ ì±„ì›Œë„£ëŠ”ë‹¤.
     D3DPRESENT_PARAMETERS d3dpp;
     ZeroMemory( &d3dpp, sizeof(d3dpp) );
 
@@ -279,7 +279,7 @@ bool InitD3D(HWND hWnd)
     d3dpp.FullScreen_RefreshRateInHz	= 0;
     d3dpp.PresentationInterval			= D3DPRESENT_INTERVAL_ONE;
 
-    // D3DÀåÄ¡¸¦ »ý¼ºÇÑ´Ù.
+    // D3Dìž¥ì¹˜ë¥¼ ìƒì„±í•œë‹¤.
     if( FAILED( gpD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 									D3DCREATE_HARDWARE_VERTEXPROCESSING,
                                     &d3dpp, &gpD3DDevice ) ) )
@@ -292,14 +292,14 @@ bool InitD3D(HWND hWnd)
 
 bool LoadAssets()
 {
-	// ÅØ½ºÃ³ ·Îµù
+	// í…ìŠ¤ì²˜ ë¡œë”©
 
-	// ½¦ÀÌ´õ ·Îµù
+	// ì‰ì´ë” ë¡œë”©
 	gpColorShader = LoadShader("ColorShader.fx");
 	if (!gpColorShader)
 		return false;
 
-	// ¸ðµ¨ ·Îµù
+	// ëª¨ë¸ ë¡œë”©
 	gpSphere = LoadModel("sphere.x");
 	if (!gpSphere)
 		return false;
@@ -307,7 +307,7 @@ bool LoadAssets()
 	return true;
 }
 
-// ½¦ÀÌ´õ ·Îµù
+// ì‰ì´ë” ë¡œë”©
 LPD3DXEFFECT LoadShader(const char * filename )
 {
 	LPD3DXEFFECT ret = NULL;
@@ -322,8 +322,8 @@ LPD3DXEFFECT LoadShader(const char * filename )
 	D3DXCreateEffectFromFile(gpD3DDevice, filename,
 		NULL, NULL, dwShaderFlags, NULL, &ret, &pError);
 
-	// ½¦ÀÌ´õ ·Îµù¿¡ ½ÇÆÐÇÑ °æ¿ì outputÃ¢¿¡ ½¦ÀÌ´õ
-	// ÄÄÆÄÀÏ ¿¡·¯¸¦ Ãâ·ÂÇÑ´Ù.
+	// ì‰ì´ë” ë¡œë”©ì— ì‹¤íŒ¨í•œ ê²½ìš° outputì°½ì— ì‰ì´ë”
+	// ì»´íŒŒì¼ ì—ëŸ¬ë¥¼ ì¶œë ¥í•œë‹¤.
 	if(!ret && pError)
 	{
 		int size	= pError->GetBufferSize();
@@ -341,13 +341,13 @@ LPD3DXEFFECT LoadShader(const char * filename )
 	return ret;
 }
 
-// ¸ðµ¨ ·Îµù
+// ëª¨ë¸ ë¡œë”©
 LPD3DXMESH LoadModel(const char * filename)
 {
 	LPD3DXMESH ret = NULL;
 	if ( FAILED(D3DXLoadMeshFromX(filename,D3DXMESH_SYSTEMMEM, gpD3DDevice, NULL,NULL,NULL,NULL, &ret)) )
 	{
-		OutputDebugString("¸ðµ¨ ·Îµù ½ÇÆÐ: ");
+		OutputDebugString("ëª¨ë¸ ë¡œë”© ì‹¤íŒ¨: ");
 		OutputDebugString(filename);
 		OutputDebugString("\n");
 	};
@@ -355,13 +355,13 @@ LPD3DXMESH LoadModel(const char * filename)
 	return ret;
 }
 
-// ÅØ½ºÃ³ ·Îµù
+// í…ìŠ¤ì²˜ ë¡œë”©
 LPDIRECT3DTEXTURE9 LoadTexture(const char * filename)
 {
 	LPDIRECT3DTEXTURE9 ret = NULL;
 	if ( FAILED(D3DXCreateTextureFromFile(gpD3DDevice, filename, &ret)) )
 	{
-		OutputDebugString("ÅØ½ºÃ³ ·Îµù ½ÇÆÐ: ");
+		OutputDebugString("í…ìŠ¤ì²˜ ë¡œë”© ì‹¤íŒ¨: ");
 		OutputDebugString(filename);
 		OutputDebugString("\n");
 	}
@@ -369,33 +369,33 @@ LPDIRECT3DTEXTURE9 LoadTexture(const char * filename)
 	return ret;
 }
 //------------------------------------------------------------
-// µÞÁ¤¸® ÄÚµå.
+// ë’·ì •ë¦¬ ì½”ë“œ.
 //------------------------------------------------------------
 
 void Cleanup()
 {
-	// ÆùÆ®¸¦ release ÇÑ´Ù.
+	// í°íŠ¸ë¥¼ release í•œë‹¤.
 	if(gpFont)
 	{
 		gpFont->Release();
 		gpFont = NULL;
 	}
 
-	// ¸ðµ¨À» release ÇÑ´Ù.
+	// ëª¨ë¸ì„ release í•œë‹¤.
 	if (gpSphere) {
 		gpSphere->Release();
 		gpSphere = NULL;
 	}
 
-	// ½¦ÀÌ´õ¸¦ release ÇÑ´Ù.
+	// ì‰ì´ë”ë¥¼ release í•œë‹¤.
 	if (gpColorShader) {
 		gpColorShader->Release();
 		gpColorShader = NULL;
 	}
 
-	// ÅØ½ºÃ³¸¦ release ÇÑ´Ù.
+	// í…ìŠ¤ì²˜ë¥¼ release í•œë‹¤.
 
-	// D3D¸¦ release ÇÑ´Ù.
+	// D3Dë¥¼ release í•œë‹¤.
     if(gpD3DDevice)
 	{
         gpD3DDevice->Release();

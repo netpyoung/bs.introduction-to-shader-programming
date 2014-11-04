@@ -2,9 +2,9 @@
 //
 // ShaderFramework.h
 // 
-// ╫╕юл╢У ╣╔╦П╦╕ ю╖гя C╫╨е╦юоюг цй╟ё╢э га╥╧юс©Же╘ют╢о╢ы.
-// (╫га╕ ╟тюсю╩ дз╣Ыго╫г ╤╖╢б юЩ╢К юл╥╦╟т га╥╧юс©Же╘╦╕
-// юш╪╨го╫ц╦И ╬х╣к╢о╢ы. -_-)
+// Л┴░Л²╢К█■ К█╟К╙╗К╔╪ Л°└М∙° CЛ┼╓М┐─Л²╪Л²≤ Л╢┬Й╟└К▀╗ М■└К═┬Л·└Л⌡▄М│╛Л·┘К▀┬К▀╓.
+// (Л▀╓Л═° Й╡▄Л·└Л²└ Л╫■К■╘М∙≤Л▀╓ К∙▄К┼■ Л═┬К▄─ Л²╢К═┤Й╡▄ М■└К═┬Л·└Л⌡▄М│╛К╔╪
+// Л·▒Л└╠М∙≤Л▀°К╘╢ Л∙┬К░╘К▀┬К▀╓. -_-)
 //
 // Author: Pope Kim
 //
@@ -16,17 +16,17 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
-// ---------- ╪╠╬П ------------------------------------
+// ---------- Л└═Л√╦ ------------------------------------
 #define WIN_WIDTH		800
 #define WIN_HEIGHT		600
 
-// ---------------- гт╪Ж га╥неДе╦ют ------------------------
+// ---------------- М∙╗Л┬≤ М■└К║°М├═М┐─Л·┘ ------------------------
 
-// ╦ч╫цаЖ цЁ╦╝╠Б ╟Э╥ц
+// К╘■Л▀°Л╖─ Л╡≤К╕╛Й╦╟ Й╢─К═╗
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 void ProcessInput(HWND hWnd, WPARAM keyPress);
 
-// цй╠Бх╜ ╟З╥ц
+// Л╢┬Й╦╟М≥■ ЙЁ╪К═╗
 bool InitEverything(HWND hWnd);
 bool InitD3D(HWND hWnd);
 bool LoadAssets();
@@ -34,14 +34,14 @@ LPD3DXEFFECT LoadShader( const char * filename );
 LPDIRECT3DTEXTURE9 LoadTexture(const char * filename);
 LPD3DXMESH LoadModel(const char * filename);
 
-// ╟тюс╥Гга ╟Э╥ц
+// Й╡▄Л·└Кё╗М■└ Й╢─К═╗
 void PlayDemo();
 void Update();
 
-// ╥╩╢У╦╣ ╟Э╥ц
+// К═▄К█■К╖│ Й╢─К═╗
 void RenderFrame();
 void RenderScene();
 void RenderInfo();
 
-// ╣ча╓╦╝ ╟Э╥ц
+// К▓╥Л═∙К╕╛ Й╢─К═╗
 void Cleanup();
