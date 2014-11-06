@@ -1,5 +1,5 @@
- 셰이더 프로그래밍 입문
- =============================
+셰이더 프로그래밍 입문
+=============================
 
 http://www.hanbit.co.kr/book/look.html?isbn=978-89-7914-949-4
 
@@ -31,3 +31,10 @@ http://www.hanbit.co.kr/book/look.html?isbn=978-89-7914-949-4
 1. 기존 Visual C++ 2010 X86/X64 Redistributable Package 제거.
 2. DirectX SDK 설치.
 3. 최신 버전의 Visual C++ 2010 X86/X64 Redistributable Package 설치.
+ - http://www.microsoft.com/ko-kr/download/details.aspx?id=26999
+
+* LNK1123 에러
+ - ref: http://ejnahc.tistory.com/412
+
+1. Microsoft Visual C++ 2010 Service Pack 1 재배포 가능 패키지 설치.
+ - https://www.microsoft.com/en-us/download/confirmation.aspx?id=23691
