@@ -34,8 +34,12 @@
 
 
 * Blinn-Phong : 퐁과 거의 비슷한 기법(현재도 많이 사용)
+ - http://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
 * Oren-Nayar : 표면의 거친 정도를 고려한 난반사광 조명기법.
+ - http://en.wikipedia.org/wiki/Oren%E2%80%93Nayar_reflectance_model
 * Cook-Torrance : 포면의 거친 정도를 고려한 정반사광 조명기법.
+ - http://en.wikipedia.org/wiki/Specular_highlight#Cook.E2.80.93Torrance_model
+ - http://inst.eecs.berkeley.edu/~cs283/sp13/lectures/cookpaper.pdf
 * spherical harmonics lighting : 오프라인에서 간접광을 사전 처리한뒤, 실시간으로 이를 주변광으로 적용할 때 사용할 수 있음.
 
 * Lyon/Blinn-Phong : Blinn-Phong 변형.
