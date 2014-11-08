@@ -150,3 +150,11 @@ UpgradeLog*.htm
 *.bim_*.settings
 # Microsoft Fakes
 FakesAssemblies/
+
+
+
+
+
+
+# render monkey
+Error.txt
