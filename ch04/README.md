@@ -26,3 +26,21 @@ global illumination model : 간접광까지 다루는 조명모델
 
 
 saturate() : 0이하의 값을 0으로, 1이상의 값을 1으로변경.(성능 영향없음)
+
+
+
+---
+
+정반사광
+퐁 모델(http://en.wikipedia.org/wiki/Phong_reflection_model)
+
+
+reflect(입사광 방향벡터, 반사면 법선)
+코사인 값을 거듭제곱함으로써 구함.
+
+
+
+Blinn-Phong : 퐁과 거의 비슷한 기법(현재도 많이 사용)
+Oren-Nayar : 표면의 거친 정도를 고려한 난반사광 조명기법.
+Cook-Torrance : 포면의 거친 정도를 고려한 정반사광 조명기법.
+spherical harmonics lighting : 오프라인에서 간접광을 사전 처리한뒤, 실시간으로 이를 주변광으로 적용할 때 사용할 수 있음.
