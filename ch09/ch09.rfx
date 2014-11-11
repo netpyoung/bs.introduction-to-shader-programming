@@ -1014,7 +1014,7 @@ Pass 0]]></RmTextDataBlock></RmStringVariable>
     </RmRegistryBranch>
     <RmRegistryBranch NAME="WORKSPACE" API="" XML_VERSION="RenderMonkey 1.71">
      <RmStringVariable NAME="LAST_SAVE" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
-12/11/2014 7:8:22]]></RmTextDataBlock></RmStringVariable>
+12/11/2014 7:10:2]]></RmTextDataBlock></RmStringVariable>
      <RmStringVariable NAME="VERSION" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
 RenderMonkey Version 1.82 (build 322)]]></RmTextDataBlock></RmStringVariable>
      <RmStringVariable NAME="XML_VERSION" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
@@ -1037,7 +1037,7 @@ D:\github\bs.shader\ch09\]]></RmTextDataBlock></RmStringVariable>
      <RmDynamicVariableValue ROW_INDEX="2" COLUMN_INDEX="0" VALUE="1.000000"/>
     </RmDynamicVariableValueContainer>
    </RmDynamicVariable>
-   <RmFloatVariable NAME="gTime" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="Time0_X" VALUE="78.710312" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
+   <RmFloatVariable NAME="gTime" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="Time0_X" VALUE="58.327187" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
    <RmFloatVariable NAME="gWaveHeight" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="5.000000" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
    <RmFloatVariable NAME="gSpeed" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="3.000000" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
    <RmFloatVariable NAME="gWaveFrequency" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="10.000000" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
@@ -1051,7 +1051,7 @@ D:\github\bs.shader\ch09\]]></RmTextDataBlock></RmStringVariable>
      <RmStreamChannel NAME="TexCoord_0" API="" DATA_SIZE="8" DATA_TYPE="1" REGISTER="0" USAGE="5" USAGE_INDEX="0" ATTRIBUTE_NAME="rm_Color"/>
     </RmStream>
    </RmStreamMap>
-   <RmModelData NAME="Model" API="" FILE_NAME="C:\Program Files (x86)\AMD\RenderMonkey 1.82\Examples\Media\Models\Torus.3ds" ORIENTATION="0"/>
+   <RmModelData NAME="Model" API="" FILE_NAME=".\dx09\Torus.x" ORIENTATION="0"/>
    <RmPass NAME="Pass 0" API="D3D" PASS_INDEX="0" ENABLED="TRUE">
     <RmModelReference NAME="Model" API=""/>
     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main" COMPILER_FLAGS="0"><RmShaderCode TYPE="TEXT"><![CDATA[
