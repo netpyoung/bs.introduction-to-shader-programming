@@ -1,0 +1,7 @@
+*.shader eol=text
+*.unity eol=text
+*.cs eol=text
+*.meta eol=lf
+*.prefab eol=lf
+.gitattributes text
+.gitignore text
