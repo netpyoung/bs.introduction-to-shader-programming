@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ch05
-  m_Shader: {fileID: 4800000, guid: b7117eb09a22c431896a227f834c0d43, type: 3}
+  m_Name: ch06
+  m_Shader: {fileID: 4800000, guid: ac73b2fd1e7fa48c19e16c119ff00384, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -124,6 +124,9 @@ Material:
     - first:
         name: _SrcBlend
       second: 1
+    - first:
+        name: _ToonLevel
+      second: 2.8
     - first:
         name: _UVSec
       second: 0
