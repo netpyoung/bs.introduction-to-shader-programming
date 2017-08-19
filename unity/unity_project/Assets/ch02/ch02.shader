@@ -1,42 +1,41 @@
 ﻿Shader "popo/ch02"
 {
-	SubShader
-	{
-		Pass
-		{
-			CGPROGRAM
+    SubShader
+    {
+        Pass
+        {
 
-			#pragma vertex vert
-			#pragma fragment frag
+CGPROGRAM
 
-			struct VS_INPUT
-			{
-			   float4 mPosition : POSITION;
-			};
+#pragma vertex vs_main
+#pragma fragment ps_main
 
-			struct VS_OUTPUT
-			{
-			   float4 mPosition : SV_Position;
-			};
+struct VS_INPUT
+{
+   float4 mPosition : POSITION;
+};
 
-			VS_OUTPUT vert(VS_INPUT Input)
-			{
-			   VS_OUTPUT Output;
+struct VS_OUTPUT
+{
+   float4 mPosition : SV_Position;
+};
 
-			   //Output.mPosition = mul(UNITY_MATRIX_M, Input.mPosition);
-			   //Output.mPosition = mul(UNITY_MATRIX_V, Output.mPosition);
-			   //Output.mPosition = mul(UNITY_MATRIX_P, Output.mPosition);
+VS_OUTPUT vs_main(VS_INPUT Input)
+{
+    VS_OUTPUT Output;
+    Output.mPosition = mul(UNITY_MATRIX_M, Input.mPosition);
+    Output.mPosition = mul(UNITY_MATRIX_V, Output.mPosition);
+    Output.mPosition = mul(UNITY_MATRIX_P, Output.mPosition);
+    return Output;
+}
 
-			   Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
-			   return Output;
-			}
+float4 ps_main(VS_OUTPUT Input) : SV_Target
+{
+    return float4(1.0f, 0.0f, 0.0f, 1.0f);
+}
 
-			float4 frag(VS_OUTPUT Input) : SV_Target
-			{
-				return float4(1.0f, 0.0f, 0.0f, 1.0f);
-			}
+ENDCG
 
-			ENDCG
-		}
-	}
+        }
+    }
 }
