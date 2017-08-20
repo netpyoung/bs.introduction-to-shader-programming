@@ -1,4 +1,4 @@
-﻿Shader "popo/ch03"
+Shader "popo/ch03-1"
 {
 	Properties
 	{
@@ -9,7 +9,10 @@
 	{
 		Pass
 		{
+
+
 CGPROGRAM
+#include "UnityCG.cginc"
 
 #pragma vertex vs_main
 #pragma fragment ps_main
@@ -37,12 +40,18 @@ VS_OUTPUT vs_main(VS_INPUT Input)
     Output.mPosition = mul(UNITY_MATRIX_P, Output.mPosition);
 
     Output.mTexCoord = Input.mTexCoord;
+
+    float t = _Time[1];
+    // float t = _SinTime[3];
+    Output.mTexCoord.x += t;
+
     return Output;
 }
 
 float4 ps_main(VS_OUTPUT Input) : SV_Target
 {
     float4 albedo = tex2D(_MainTex, Input.mTexCoord);
+
     return albedo.rgba;
 }
 
