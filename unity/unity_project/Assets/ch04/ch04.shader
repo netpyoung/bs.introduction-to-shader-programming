@@ -30,7 +30,14 @@
 			   VS_OUTPUT Output;
 
 			   float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
-			   float3 worldNormal = normalize(mul((float3x3)UNITY_MATRIX_M, Input.mNormal));
+
+			   //float3 worldNormal = normalize(mul(transpose(unity_WorldToObject), float4(Input.mNormal.xyz, 0)).xyz);
+                           //float3 worldNormal = normalize(mul(transpose(unity_WorldToObject), float4(Input.mNormal.xyz, 0)).xyz);
+			   //float3 worldNormal = normalize(mul((float3x3)unity_ObjectToWorld, Input.mNormal));
+			   float3 worldNormal = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
+			   //float3 worldNormal = normalize(mul(Input.mNormal.xyz, (float3x3)UNITY_MATRIX_M));
+
+			   //float3 worldNormal = mul((float3x3)UNITY_MATRIX_IT_MV, Input.mNormal);
 			   float3 lightDirection = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
 
 			   Output.mDiffuse = dot(worldNormal, -lightDirection);
