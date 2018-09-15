@@ -5,6 +5,7 @@ Shader "popo/ch04-diffuse"
 		Pass
 		{
 			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardBase" }
 
 			CGPROGRAM
 

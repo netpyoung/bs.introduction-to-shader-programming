@@ -31,7 +31,7 @@
 				float4 mPosition : POSITION;
 				float4 mNormal : NORMAL;
 				float3 mTangent : TANGENT;
-				float3 mBinormal : BINORMAL;
+				float3 mBinormal : TANGENT;//BINORMAL;
 				float2 mUV : TEXCOORD0;
 			};
 
@@ -96,7 +96,7 @@
 				//diffuse = ceil(diffuse * _ToonLevel) / _ToonLevel;
 				float3 ambient = float3(0.1f, 0.1f, 0.1f) * albedo;
 				//return float4(diffuse, 1);
-				//return float4(diffuse + ambient, 1);
+				return float4(diffuse + ambient, 1);
 				return float4(ambient, 1);
 				return float4(1,1,1,1);
 			}

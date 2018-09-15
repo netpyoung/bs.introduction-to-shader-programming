@@ -4,10 +4,10 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ch04-specular-phong
-  m_Shader: {fileID: 4800000, guid: 80195bc3c0b85474ba61f8053273410a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0870d0a4ed4e8e74c89bac9813c13754, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0

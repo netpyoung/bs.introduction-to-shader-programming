@@ -4,10 +4,10 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ch04-dffuse
-  m_Shader: {fileID: 4800000, guid: 90c3811fda8214727be4c1c124cb2ea9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5232ed1f10c0ba1448d8fad3a725536a, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0

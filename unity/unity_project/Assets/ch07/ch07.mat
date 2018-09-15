@@ -4,160 +4,95 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ch07
-  m_Shader: {fileID: 4800000, guid: ea43d8e0e2d3c4a8786682299e7de878, type: 3}
+  m_Shader: {fileID: 4800000, guid: 83856d300b3648c4ca477d60ca384597, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BumpMap
-      second:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _D_Texture
-      second:
-        m_Texture: {fileID: 2800000, guid: 31e02c7cc16ac49a1a69a337c4e3c6cf, type: 3}
+    - _D_Texture:
+        m_Texture: {fileID: 2800000, guid: c9a29906d1543bf4e80d924729e4dd29, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedoMap
-      second:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailMask
-      second:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormalMap
-      second:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DiffuseTex
-      second:
+    - _DiffuseTex:
         m_Texture: {fileID: 2800000, guid: 310a93df7867a49d098275f7dbb89d26, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _EmissionMap
-      second:
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: 310a93df7867a49d098275f7dbb89d26, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MetallicGlossMap
-      second:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _N_Texture
-      second:
-        m_Texture: {fileID: 2800000, guid: 5ef5e99c409a240f7a33a6bde1769340, type: 3}
+    - _N_Texture:
+        m_Texture: {fileID: 2800000, guid: b68b2b82b240a7a4b8cfa067d91e0b7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OcclusionMap
-      second:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ParallaxMap
-      second:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _S_Texture
-      second:
-        m_Texture: {fileID: 2800000, guid: 676c33f16b8bf4aaf9a98c8abd23cd4e, type: 3}
+    - _S_Texture:
+        m_Texture: {fileID: 2800000, guid: 9f5db3b67f22f774fbf577c27f3dc219, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _SpecularTex
-      second:
+    - _SpecularTex:
         m_Texture: {fileID: 2800000, guid: 41d0cff0baa17497ea6dc221a14bd08b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _BumpScale
-      second: 1
-    - first:
-        name: _Cutoff
-      second: 0.5
-    - first:
-        name: _DetailNormalMapScale
-      second: 1
-    - first:
-        name: _DstBlend
-      second: 0
-    - first:
-        name: _GlossMapScale
-      second: 1
-    - first:
-        name: _Glossiness
-      second: 0.5
-    - first:
-        name: _GlossyReflections
-      second: 1
-    - first:
-        name: _Metallic
-      second: 0
-    - first:
-        name: _Mode
-      second: 0
-    - first:
-        name: _OcclusionStrength
-      second: 1
-    - first:
-        name: _Parallax
-      second: 0.02
-    - first:
-        name: _SmoothnessTextureChannel
-      second: 0
-    - first:
-        name: _SpecularHighlights
-      second: 1
-    - first:
-        name: _SrcBlend
-      second: 1
-    - first:
-        name: _ToonLevel
-      second: 5.6
-    - first:
-        name: _UVSec
-      second: 0
-    - first:
-        name: _ZWrite
-      second: 1
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _ToonLevel: 5.6
+    - _UVSec: 0
+    - _ZWrite: 1
     m_Colors:
-    - first:
-        name: _BaseColor
-      second: {r: 0.65625, g: 0.65625, b: 0.75, a: 0}
-    - first:
-        name: _Color
-      second: {r: 0.86764705, g: 0.26794982, b: 0.26794982, a: 1}
-    - first:
-        name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.9528302, g: 0.35384417, b: 0, a: 0.85882354}
+    - _Color: {r: 0.86764705, g: 0.26794982, b: 0.26794982, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
