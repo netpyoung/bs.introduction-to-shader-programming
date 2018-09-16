@@ -29,7 +29,7 @@ Shader "popo/ch04-diffuse"
 			   VS_OUTPUT Output;
 
 			   float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
-                           float3 lightDirection = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
+               float3 lightDirection = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
 
 			   float3 worldNormal = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
 
@@ -41,7 +41,7 @@ Shader "popo/ch04-diffuse"
 
 			float4 ps_main(VS_OUTPUT Input) : SV_Target
 			{
-                                float3 diffuse = saturate(Input.mDiffuse);
+				float3 diffuse = saturate(Input.mDiffuse);
 				return float4(diffuse, 1);
 			}
 

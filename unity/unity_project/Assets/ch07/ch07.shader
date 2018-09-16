@@ -31,6 +31,8 @@
 				float4 mPosition : POSITION;
 				float4 mNormal : NORMAL;
 				float3 mTangent : TANGENT;
+
+				// https://docs.unity3d.com/Manual/SL-VertexProgramInputs.html
 				float3 mBinormal : TANGENT;//BINORMAL;
 				float2 mUV : TEXCOORD0;
 			};
