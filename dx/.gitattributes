@@ -1,0 +1,36 @@
+# Sources
+*.c     text encoding=UTF-8 diff=c
+*.cc    text encoding=UTF-8 diff=cpp
+*.cxx   text encoding=UTF-8 diff=cpp
+*.cpp   text encoding=UTF-8 diff=cpp
+*.c++   text encoding=UTF-8 diff=cpp
+*.hpp   text encoding=UTF-8 diff=cpp
+*.h     text encoding=UTF-8 diff=c
+*.h++   text encoding=UTF-8 diff=cpp
+*.hh    text encoding=UTF-8 diff=cpp
+
+# Compiled Object files
+*.slo   binary
+*.lo    binary
+*.o     binary
+*.obj   binary
+
+# Precompiled Headers
+*.gch   binary
+*.pch   binary
+
+# Compiled Dynamic libraries
+*.so    binary
+*.dylib binary
+*.dll   binary
+
+# Compiled Static libraries
+*.lai   binary
+*.la    binary
+*.a     binary
+*.lib   binary
+
+# Executables
+*.exe   binary
+*.out   binary
+*.app   binary
