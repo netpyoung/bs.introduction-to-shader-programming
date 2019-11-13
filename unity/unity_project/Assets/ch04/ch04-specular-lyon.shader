@@ -1,4 +1,4 @@
-Shader "popo/ch04-specular-phong"
+Shader "popo/ch04-specular-lyon"
 {
 	SubShader
 	{
@@ -20,9 +20,16 @@ struct VS_OUTPUT
 {
    float4 mPosition : SV_Position;
    // float3 mDiffuse : TEXCOORD1;
-   float3 V : TEXCOORD2;
-   float3 R : TEXCOORD3;
+   float Lyon : TEXCOORD2;
 };
+
+float Lyon(float3 normal, float3 view, float3 light, float specPower)
+{
+   float3 halfVector = normalize(light + view);
+   float3 difference = halfVector - normal;
+   float xs = saturate(dot(difference, difference) * specPower / 2);
+   return pow(1 - xs, 3);
+}
 
 VS_OUTPUT vs_main(VS_INPUT Input)
 {
@@ -38,10 +45,11 @@ VS_OUTPUT vs_main(VS_INPUT Input)
    float3 N = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
 
    // 시선 벡터 = normalize(카메라 위치 - 변환 위치)
-   Output.V = normalize(_WorldSpaceCameraPos.xyz - worldPosition.xyz);
+   float3 V = normalize(_WorldSpaceCameraPos.xyz - worldPosition.xyz);
 
-   // 반사 벡터 = 2 * dot(빛의 방향, 변환 법선) * 변환 법선 - 빛의 방향
-   Output.R = reflect(L, N);
+   // lyon
+   float specPower = 100;
+   Output.Lyon = Lyon(N, V, L, specPower);
 
    Output.mPosition = mul(UNITY_MATRIX_VP, worldPosition);
 
@@ -50,13 +58,9 @@ VS_OUTPUT vs_main(VS_INPUT Input)
 
 float4 ps_main(VS_OUTPUT Input) : SV_Target
 {
-  float3 V = normalize(Input.V);
-  float3 R = normalize(Input.R);
-
-  // 퐁 반사의 세기 = dot(시선 벡터, 반사 벡터)^Power
-  float3 phong_specular = pow(saturate(dot(V, R)), 20);
-
-  return float4(phong_specular, 1);
+  float Lyon = Input.Lyon;
+  float3 specular = float3(Lyon, Lyon, Lyon);
+  return float4(specular, 1);
 }
 ENDCG
 		}

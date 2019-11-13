@@ -38,3 +38,27 @@ http://www.hanbit.co.kr/book/look.html?isbn=978-89-7914-949-4
 
 1. Microsoft Visual C++ 2010 Service Pack 1 재배포 가능 패키지 설치.
  - https://www.microsoft.com/en-us/download/confirmation.aspx?id=23691
+
+
+# TODO
+텍스쳐
+빛과 반사
+lambert
+phong
+
+toon shader
+outline
+hatching
+diffuse map / light map / normal map / specular map
+environment map(sphere map/ cube map)
+water wave
+volume shadow - 9-con sampling
+mosaic
+noise - square, diamond, graphic patterns, jigsaw
+voronoi diagram - NPR(Non Realistic Rendering)
+perturbation - embossed glass
+pencil stroke
+distortion
+hatching
+blur
+bloom

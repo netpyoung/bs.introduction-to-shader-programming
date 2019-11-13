@@ -1,4 +1,4 @@
-Shader "popo/ch04-specular-phong"
+Shader "popo/ch04-specular-blinn"
 {
 	SubShader
 	{
@@ -20,8 +20,8 @@ struct VS_OUTPUT
 {
    float4 mPosition : SV_Position;
    // float3 mDiffuse : TEXCOORD1;
-   float3 V : TEXCOORD2;
-   float3 R : TEXCOORD3;
+   float3 N : TEXCOORD2;
+   float3 H : TEXCOORD3;
 };
 
 VS_OUTPUT vs_main(VS_INPUT Input)
@@ -35,13 +35,13 @@ VS_OUTPUT vs_main(VS_INPUT Input)
    float3 L = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
 
    // 변환 법선 = 정점 법선 * 월드 행렬의 회전 행렬
-   float3 N = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
+   Output.N = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
 
    // 시선 벡터 = normalize(카메라 위치 - 변환 위치)
-   Output.V = normalize(_WorldSpaceCameraPos.xyz - worldPosition.xyz);
+   float3 V = normalize(_WorldSpaceCameraPos.xyz - worldPosition.xyz);
 
-   // 반사 벡터 = 2 * dot(빛의 방향, 변환 법선) * 변환 법선 - 빛의 방향
-   Output.R = reflect(L, N);
+   // Half 벡터 = normalize(시선 벡터 + 빛의 방향 벡터)
+   Output.H = normalize(V + L);
 
    Output.mPosition = mul(UNITY_MATRIX_VP, worldPosition);
 
@@ -50,13 +50,13 @@ VS_OUTPUT vs_main(VS_INPUT Input)
 
 float4 ps_main(VS_OUTPUT Input) : SV_Target
 {
-  float3 V = normalize(Input.V);
-  float3 R = normalize(Input.R);
+  float3 N = normalize(Input.N);
+  float3 H = normalize(Input.H);
 
-  // 퐁 반사의 세기 = dot(시선 벡터, 반사 벡터)^Power
-  float3 phong_specular = pow(saturate(dot(V, R)), 20);
+  // Blinn-Phong 반사 세기 = dot(법선 벡터, Half 벡터)^Power
+  float3 blinn_specular = pow(saturate(dot(N, H)), 20);
 
-  return float4(phong_specular, 1);
+  return float4(blinn_specular, 1);
 }
 ENDCG
 		}
