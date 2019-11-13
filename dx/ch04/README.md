@@ -45,3 +45,5 @@
 * Lyon/Blinn-Phong : Blinn-Phong 변형.
  - ref: http://jalnagakds.tumblr.com/post/25825085620/phong-blinn-phong
  - ref: http://dicklyon.com/tech/Graphics/Phong_TR-Lyon.pdf
+
+- 갑자기 동작안함 확인해볼것.
