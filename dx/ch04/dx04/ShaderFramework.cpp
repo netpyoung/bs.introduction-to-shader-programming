@@ -326,9 +326,9 @@ bool InitD3D(HWND hWnd)
 bool LoadAssets()
 {
 	// 텍스처 로딩
-	gpEarthDM = LoadTexture("Earth.jpg");
-	if (!gpEarthDM)
-		return false;
+	// gpEarthDM = LoadTexture("Earth.jpg");
+	// if (!gpEarthDM)
+	// 	return false;
 
 	// 쉐이더 로딩
 	gpTextureMappingShader = LoadShader("Lighting.fx");
@@ -430,10 +430,10 @@ void Cleanup()
 	}
 
 	// 텍스처를 release 한다.
-	if (gpEarthDM) {
-		gpEarthDM->Release();
-		gpEarthDM = NULL;
-	}
+	//if (gpEarthDM) {
+	//	gpEarthDM->Release();
+	//	gpEarthDM = NULL;
+	//}
 
 	// D3D를 release 한다.
     if(gpD3DDevice)
