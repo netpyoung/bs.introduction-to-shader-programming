@@ -15,6 +15,8 @@ diffuse는 표면의 거치면 강하다고 나와있다.
 
 시멘트같은게 결정이 고르지 않을 것인데, 역시 시멘트 같은걸로 물체를 만들면, 거칠어지니 거칠기와 바로 연관지은듯 보인다.
 
+basic_lighting_normal_transformation
+
 
 ## lambert diffuse - [람베르트 모델](http://en.wikipedia.org/wiki/Lambertian_reflectance)
 람베르트가 확산모델을 다음과 같은 확산 공식을 제시하였다.
@@ -409,3 +411,24 @@ Translucent
 
 
 ch05는 toon
+
+
+https://msdn.microsoft.com/en-us/library/windows/desktop/bb509647.aspx
+
+# Techniques
+* Phong
+* Lambert
+* Half Lambert
+
+* Blinn-Phong: a technique that is very similar to Phong.
+* Oren-Nayar: a diffuse lighting technique that takes account of the roughness of a surface.
+* Cook-Torrance: a specular lighting technique that takes account of the roughness of a surface.
+* Spherical Harmonics Lighting: once indirect lighting is pre-calculated offline, it can be applied in real-time.
+
+
+# PBS(physical based shader)
+Oren - Nayar - 거칠게하기 - phong은 너무 매끈거림
+Blinn - Phong Specuar
+Anisotropic
+Fresnel effect : Snell's Law
+IBL(image based light)
