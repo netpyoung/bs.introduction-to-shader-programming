@@ -134,7 +134,9 @@ OpenGL / UnityEngine
 
 ### 간단한 uv animation
 
-간단하게 시간에 따라 uv좌표를 변환하여
+간단하게 시간에 따라 uv좌표를 변환. 유니티에 있는 `UnityCG.cginc`를 포함시키자.
+
+[unity: SL-BuiltinIncludes], [unity: SL-UnityShaderVariables]
 
 ``` shder
 CGPROGRAM
@@ -145,11 +147,6 @@ CGPROGRAM
 // ...
 ENDCG
 ```
-
-https://docs.unity3d.com/Manual/SL-BuiltinIncludes.html
-
-https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html
-
 
 |                 |                                                                                             |
 | --------------- | ------------------------------------------------------------------------------------------- |
@@ -177,6 +174,8 @@ VS_OUTPUT vs_main(VS_INPUT Input)
 
     Output.mTexCoord = Input.mTexCoord;
 
+    // _Time : float4
+    // Time since level load (t/20, t, t*2, t*3), use to animate things inside the shaders.
     float t = _Time[1];
     Output.mTexCoord.x += t;
 
@@ -185,15 +184,9 @@ VS_OUTPUT vs_main(VS_INPUT Input)
 
 ```
 
-``` shader
-    // _Time : float4
-    // Time since level load (t/20, t, t*2, t*3), use to animate things inside the shaders.
-
-    float t = _Time[1];
-    Output.mTexCoord.x += t;
-```
-
 [unity: SL-Shader]: https://docs.unity3d.com/Manual/SL-Shader.html
 [unity: SL-SubShader]: https://docs.unity3d.com/Manual/SL-SubShader.html
 [unity: SL-Pass]: https://docs.unity3d.com/Manual/SL-Pass.html
 [unity: SL-Properties]: https://docs.unity3d.com/Manual/SL-Properties.html
+[unity: SL-BuiltinIncludes]: https://docs.unity3d.com/Manual/SL-BuiltinIncludes.html
+[unity: SL-UnityShaderVariables]: https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html

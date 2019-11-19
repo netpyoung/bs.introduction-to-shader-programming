@@ -1,62 +1,6 @@
 # 난반사(diffuse)와 정반사(specular)
-![](res/440px-Lambert2.gif)
-
-## [Diffuse reflection](https://en.wikipedia.org/wiki/Diffuse_reflection)
-
-
-일단, 많이들 쓰는 난반사로 적어놨는데, 분산반사가 더 어울리지 않을까 싶다.
-
-diffuse는 표면의 거치면 강하다고 나와있다.
-거칠다는 표현보다는, 물체를 이루는 결정이 고르지 않을때 더 많은 분산반사가 이루어 진다고 하면 조금 더 올바른 표현이지 않을까 싶다.
-
-빛이 물체를 이루고 있는 결정을 통과할때, 결정끼리 맞닿아 있는 경계를 지날때 반사가 이루어지며, 결정이 고르지 않을때 반사가 좀 더 확산되는 것이다.
 
 ![](res/500px-Diffuse_reflection.gif)
-
-시멘트같은게 결정이 고르지 않을 것인데, 역시 시멘트 같은걸로 물체를 만들면, 거칠어지니 거칠기와 바로 연관지은듯 보인다.
-
-basic_lighting_normal_transformation
-
-
-## lambert diffuse - [람베르트 모델](http://en.wikipedia.org/wiki/Lambertian_reflectance)
-람베르트가 확산모델을 다음과 같은 확산 공식을 제시하였다.
-
-dot(A, B) = cos(x) * |A| * |B|, A와 B가 normalized됬을때라고 가정하면 벡터의 길이는 1이니, dot(A, B) = cos(x)가 된다.
-
-```
-dot(`N`ormal, -(normalized `L`ight-directed vector))
- = cos(a)
-```
-
-object의 `N`ormal을 구하고, `L`ight의 방향을 normalized시킨 것을 내적시키면 된다.
-
-단, 내적시키러면 벡터의 밑둥이 맞닿아 있어야 함으로, `L`을 `-L`로 반대방향으로 꺽어준다.
-
-
-
-## half-lambert - [하프-람베르트](https://developer.valvesoftware.com/wiki/Half_Lambert)
-
-왼쪽이 람베르트, 오른쪽이 하프-람베르트이다.
-
-![](res/400px-Alyx_lambert_half_lambert.jpg)
-
-색의 진하기를 그래프로 보자면, 빨간색이 람베르트, 파란색이 하프-람베르트이다.
-
-![](res/Lambert_vs_halflambert.png)
-
-빨간색이 원점 0을 기준으로 그려진반면, 파란색은 그의 반인 0.5를 기준으로 그려진 것을 알 수 있다.
-
-빨간색 그래프를 파란색 그래프와 같이 만들려면, 그래프를 높이를 반으로 줄이고, 줄어든 만큼, 기준점을 올리면 될 것이다.
-
-```
-dot( -`L`, `N` ) * 0.5 + 0.5
-```
-
-거기에 그래프의 폭을 뾰족하게 만들려면, pow로 제곱해주면 될 일이다.
-
-```
-pow( dot( -`L`, `N` ) * 0.5 + 0.5, `power`)
-```
 
 ## implement lambert
 
@@ -64,8 +8,7 @@ pow( dot( -`L`, `N` ) * 0.5 + 0.5, `power`)
 
 구현하기전에 생각해 볼 것은,
 1. 물체의 `N`ormal 과 normalize된 `L`ight-방향 백터를 구해야 한다.
-2. vertex shader단에서 해결이 될 것인지, vertex shader 보다 부하가 큰 pixel
-shader단에서 구현할 것인지 판단해야 한다.
+2. vertex shader단에서 해결이 될 것인지, vertex shader 보다 부하가 큰 pixel shader단에서 구현할 것인지 판단해야 한다.
 
 
 ### matrix
@@ -74,18 +17,20 @@ shader단에서 구현할 것인지 판단해야 한다.
 * UNITY_MATRIX_P - view space 에서 `P`rojection space로 변환.
 * unity_WorldToObject - `unity_ObjectToWorld`의 역행렬.
 
-### normal, light
+### Normal, Light
+
 light의 방향은, `물체의 월드좌표 - 빛의 월드좌표`를 한뒤 normalize를 시켜주면 된다.
 문제는 물체의 normal인데, 자세히 살펴보도록 하자.
 
 `model matrix`를 `inverse`시키고 `transpose`시키면 `normal matrix`를 얻을 수 있다. 중간에 과정이 누락됬을시, 처음 겉에서 봤을시 문제없어보이더라도, 물체가 변형됬을때 normal값이 정상적이지 않은 값이 들어가게 될 것이다.
-```
+
+``` ref
 mat3 normal_matrix = transpose(inverse(mat3(modelview_matrix)))
 ```
 
-![](res/normal-inversetranspose.png)
+![normal-inversetranspose](res/normal-inversetranspose.png)
 
-![](res/basic_lighting_normal_transformation.png)
+![basic_lighting_normal_transformation](res/basic_lighting_normal_transformation.png)
 
 ```
 float4x4 normalMatrix
@@ -98,8 +43,7 @@ float4x4 normalMatrix
  = transpose(unity_WorldToObject)
 ```
 
-
-```
+``` shader
 float3 worldNormal
 
 = mul(transpose(unity_WorldToObject), float4(normal.xyz, 0)).xyz
@@ -113,12 +57,10 @@ float3 worldNormal
 worldNormal = normalize(worldNormal);
 ```
 
-
-```
+``` shader
 float3 worldNormal = mul(Input.mNormal, (float3x3)unity_WorldToObject);
 worldNormal = normalize(worldNormal);
 ```
-
 
 ### light dir
 
@@ -188,13 +130,9 @@ float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
 
 https://docs.unity3d.com/Manual/SL-Pass.html
 
-
 ### phong reflection
-### Phong Model (by Phong Bui-Tuong)
 
-![](res/phong.png)
-
-![](res/Blinn_Vectors.png)
+### Phong Model
 
 * L : `L`ight(빛)을 향한 방향
 * V : `V`iew(눈)을 향한 방향
@@ -209,7 +147,7 @@ phong = power(dot(V, R), 100)
 
 일단 LightMode를 명시해주고,
 
-```
+``` shader
 Pass
 {
   Tags{ "LightMode" = "ForwardAdd" }
@@ -221,7 +159,7 @@ Pass
 
 CG 코드를 작성한다.
 
-```
+``` shader
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -278,8 +216,8 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
 
 ```
 
-
 ## Jim Blinn
+
 퐁 반사는 정면으로 반사하는 빛에 대해서 현실 세계를 잘 표현하지만 그림과 같이 거의 수평면으로 입사되는 빛에 대해서 더 넓은 영역의 하이라이트(Highlight)를 만들고 반사의 경계를 만들어 냅니다.
 
 또한 실 세계에서 거의 수평면으로 입사한 빛은 오히려 더 강한 Specular를 만들고, 이를 표현하려면 시선 벡터 방향으로 반사 벡터를 좀 더 움직여야 합니다. 이것을 "off-specular peak" 이라 합니다.
@@ -287,7 +225,6 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
 Blinn-Phong 반사는 퐁 반사 모델을 수정해서 좀 더 현실 세계의 정 반사 효과를 표현한 조명 모델이라 할 수 있습니다. Blinn-Phong 반사는 다음 그림과 같이 퐁 반사의 반사 벡터 대신 Half 벡터를 사용합니다.
 
 Phong과 별반 차이가 없어보이긴 하지만 물체 표면을 따라서 늘어져서 보인다는 특징이 있습니다.
-
 
 아시다시피 게임에서 널리 쓰이는 Specular 모델인 Phong 셰이딩은 그다지 물리적으로 정확한 모델은 아닙니다. 실제 Specular는 방향성을 갖고 있지만 Phong 셰이딩은 항상 원형 형태로 Specular가 생기거든요.
 
@@ -305,12 +242,10 @@ Lyon-Phong
 성능
 https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model#Efficiency
 
+- phong - R : 반사 벡터 = reflect(L, N)
+- blinn - H : Half 벡터 = normalize(V + L)
 
-* phong - R : 반사 벡터 = reflect(L, N)
-* blinn - H : Half 벡터 = normalize(V + L)
-
-
-```
+``` shader
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -364,20 +299,12 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
 }
 ```
 
-
-
-
 # REF
+
 * http://3dapi.com/bs25_shader1/
 * https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
 
-
-
-
-
 subsurface scattering
-
-
 
 lambert
 half-lambert
@@ -390,8 +317,6 @@ Blinn-Phong (Blinn D1, Phong) specular distribution
 Lyon halfway method 1 (for k=2 and D = H* – L)
 Trowbridge-Reitz (Blinn D3) specular distribution
 Torrance-Sparrow (Blinn D2, Gaussian) specular distribution
-
-
 
 Bidirectional Reflectance Distribution Function (BRDF) describes
 http://people.csail.mit.edu/wojciech/BRDFValidation/index.html
