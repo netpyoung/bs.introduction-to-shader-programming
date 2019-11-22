@@ -7,11 +7,12 @@
 이제 한번 구현해 보자.
 
 구현하기전에 생각해 볼 것은,
+
 1. 물체의 `N`ormal 과 normalize된 `L`ight-방향 백터를 구해야 한다.
 2. vertex shader단에서 해결이 될 것인지, vertex shader 보다 부하가 큰 pixel shader단에서 구현할 것인지 판단해야 한다.
 
-
 ### matrix
+
 * UNITY_MATRIX_M - `M`odel transform. `unity_ObjectToWorld` 와 같음.
 * UNITY_MATRIX_V - world space 에서 local `V`iew space로 변환.
 * UNITY_MATRIX_P - view space 에서 `P`rojection space로 변환.
@@ -32,7 +33,7 @@ mat3 normal_matrix = transpose(inverse(mat3(modelview_matrix)))
 
 ![basic_lighting_normal_transformation](res/basic_lighting_normal_transformation.png)
 
-```
+``` shader
 float4x4 normalMatrix
 
 // inverse는 지원하지 않는 함수.
@@ -66,14 +67,14 @@ worldNormal = normalize(worldNormal);
 
 [SL-UnityShaderVariables](https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html)
 
-```
+``` shader
 float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
 float3 lightDirection = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
 ```
 
 ### vertex shader, pixel shader
-lambert shader 를 구현하기 위해서는 빛의 방향, 물체의 방향이 필요하니, vertex shader 단에서도 충분히 구현할 수 있다.
 
+lambert shader 를 구현하기 위해서는 빛의 방향, 물체의 방향이 필요하니, vertex shader 단에서도 충분히 구현할 수 있다.
 
 ```cg
 // Tags에 LightMode가 설정된 것에 주의.
@@ -130,7 +131,6 @@ float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
 
 https://docs.unity3d.com/Manual/SL-Pass.html
 
-### phong reflection
 
 ### Phong Model
 
@@ -237,6 +237,11 @@ Normalmap이 깨져보이게 Specular가 생깁니다!
 
 그런데 가뜩이나 Phong 셰이더보다 무거운데 Normalmap까지 처리해주느라 더 무거워지는 일이 생기는데 이걸 해결한 유사 Blinn-Phon 셰이딩 모델이 있습니다. 심지어 Phong 셰이더보다도 가볍습니다!
 
+- https://jalnagakds.tumblr.com/post/25825085620/phong-%EC%85%B0%EC%9D%B4%EB%8D%94%EB%B3%B4%EB%8B%A4-%EC%8B%BC-%EC%9C%A0%EC%82%AC-blinn-phong-%EC%85%B0%EC%9D%B4%EB%94%A9-%EB%AA%A8%EB%8D%B8
+
+- http://theinstructionlimit.com/isotropic-specular-reflection-models-comparison
+
+
 Lyon-Phong
 
 성능
@@ -298,62 +303,3 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
   return float4(blinn_specular, 1);
 }
 ```
-
-# REF
-
-* http://3dapi.com/bs25_shader1/
-* https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
-
-subsurface scattering
-
-lambert
-half-lambert
-phong
-blinn-phong
-lyon
-
-Phong reflection model
-Blinn-Phong (Blinn D1, Phong) specular distribution
-Lyon halfway method 1 (for k=2 and D = H* – L)
-Trowbridge-Reitz (Blinn D3) specular distribution
-Torrance-Sparrow (Blinn D2, Gaussian) specular distribution
-
-Bidirectional Reflectance Distribution Function (BRDF) describes
-http://people.csail.mit.edu/wojciech/BRDFValidation/index.html
-
-Oren–Nayar (Rough opaque diffuse surfaces)
-Minnaert
-Cook–Torrance (microfacets)
-He et al.
-
-ashikihmin
-lafortune
-Ward anisotropic
-
-
-Strauss
-Translucent
-
-
-ch05는 toon
-
-
-https://msdn.microsoft.com/en-us/library/windows/desktop/bb509647.aspx
-
-# Techniques
-* Phong
-* Lambert
-* Half Lambert
-
-* Blinn-Phong: a technique that is very similar to Phong.
-* Oren-Nayar: a diffuse lighting technique that takes account of the roughness of a surface.
-* Cook-Torrance: a specular lighting technique that takes account of the roughness of a surface.
-* Spherical Harmonics Lighting: once indirect lighting is pre-calculated offline, it can be applied in real-time.
-
-
-# PBS(physical based shader)
-Oren - Nayar - 거칠게하기 - phong은 너무 매끈거림
-Blinn - Phong Specuar
-Anisotropic
-Fresnel effect : Snell's Law
-IBL(image based light)
