@@ -9,8 +9,8 @@
 	{
 		Pass
 		{
-CGPROGRAM
-
+HLSLPROGRAM
+#include "UnityShaderVariables.cginc"
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -46,7 +46,7 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
     return albedo.rgba;
 }
 
-ENDCG
+ENDHLSL
 		}
 	}
 }

@@ -4,11 +4,11 @@ Shader "popo/ch04-half-diffuse"
 	{
 		Pass
 		{
-			//Tags { "LightMode" = "ForwardAdd" }
+			Tags { "LightMode" = "ForwardAdd" }
 
-			CGPROGRAM
-        	#include "Lighting.cginc"
-
+			HLSLPROGRAM
+			#include "UnityShaderVariables.cginc"
+			#pragma multi_compile_fwdadd
 			#pragma vertex vs_main
 			#pragma fragment ps_main
 
@@ -46,7 +46,7 @@ Shader "popo/ch04-half-diffuse"
 				return float4(diffuse, 1);
 			}
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }
