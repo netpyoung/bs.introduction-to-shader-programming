@@ -4,7 +4,7 @@ Shader "popo/ch04-specular-lyon"
 	{
 		Pass
 		{
-			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardBase" }
 
 CGPROGRAM
 #pragma vertex vs_main

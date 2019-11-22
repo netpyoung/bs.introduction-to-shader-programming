@@ -4,7 +4,7 @@
 	{
 		Pass
 		{
-			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardAdd" }
 
 			CGPROGRAM
 

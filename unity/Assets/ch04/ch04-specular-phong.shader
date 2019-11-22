@@ -4,7 +4,7 @@ Shader "popo/ch04-specular-phong"
 	{
 		Pass
 		{
-			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardAdd" }
 
 CGPROGRAM
 #pragma vertex vs_main

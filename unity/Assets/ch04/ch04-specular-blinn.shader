@@ -4,7 +4,7 @@ Shader "popo/ch04-specular-blinn"
 	{
 		Pass
 		{
-			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardAdd" }
 
 CGPROGRAM
 #pragma vertex vs_main
@@ -34,7 +34,7 @@ VS_OUTPUT vs_main(VS_INPUT Input)
    // 빛 벡터 = normalize(변환 위치 - 빛 위치)
    float3 L = normalize(worldPosition.xyz - _WorldSpaceLightPos0.xyz);
 
-   // 변환 법선 = 정점 법선 * 월드 행렬의 회전 행렬
+   // 변환 법선 = 월드 행렬의 회전 행렬 * 정점 법선
    Output.N = normalize(mul(Input.mNormal.xyz, (float3x3)unity_WorldToObject));
 
    // 시선 벡터 = normalize(카메라 위치 - 변환 위치)
