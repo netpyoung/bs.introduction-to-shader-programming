@@ -10,10 +10,11 @@
 	{
 		Pass
 		{
-			//Tags{ "LightMode" = "ForwardAdd" }
+			Tags{ "LightMode" = "UniversalForward"  }
 
 			HLSLPROGRAM
-			#include "UnityShaderVariables.cginc"
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -35,28 +36,24 @@
 
 			VS_OUTPUT vert(VS_INPUT Input)
 			{
-			   VS_OUTPUT Output;
+				VS_OUTPUT Output;
+				Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
+				Light light = GetAdditionalLight(0, Output.mPosition.xyz);
+				float3 lightDirection = -light.direction;
 
-			   float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
-			   float3 worldNormal = normalize(mul(Input.mNormal, (float3x3)unity_WorldToObject));
-			   float3 lightDirectionUnnormlized = worldPosition.xyz - _WorldSpaceLightPos0.xyz;
-			   float3 lightDirection = normalize(lightDirectionUnnormlized);
-
-			   Output.mDiffuse = dot(worldNormal, -lightDirection);
-			   Output.mPosition = mul(UNITY_MATRIX_VP, worldPosition);
-			   return Output;
+				Output.mDiffuse = dot(Input.mNormal, -lightDirection);
+				return Output;
 			}
 
 			struct PS_INPUT
-			{
+			{			   
+				float4 mPosition : SV_Position;
 				float3 mDiffuse : TEXCOORD1;
 			};
-
 
 			float4 frag(PS_INPUT Input) : SV_Target
 			{
 				float3 diffuse = saturate(Input.mDiffuse);
-				//diffuse = ceil(diffuse * 4) / 4;
 				diffuse = ceil(diffuse * _ToonLevel) / _ToonLevel;
 				return float4(_BaseColor * diffuse.xyz, 1);
 			}
