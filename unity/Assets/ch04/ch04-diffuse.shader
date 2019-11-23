@@ -6,7 +6,8 @@ Shader "popo/ch04-diffuse"
 		{
 			// Tags{ "LightMode" = "ForwardAdd" }
 			//Tags{ "LightMode" = "ForwardBase" }
-			CGPROGRAM
+			HLSLPROGRAM
+			#include "UnityShaderVariables.cginc"
 
 			#pragma vertex vs_main
 			#pragma fragment ps_main
@@ -47,7 +48,7 @@ Shader "popo/ch04-diffuse"
 				//return float4(1, 1, 1, 1);
 			}
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }

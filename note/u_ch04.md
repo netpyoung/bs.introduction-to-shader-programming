@@ -63,6 +63,9 @@ float3 worldNormal = mul(Input.mNormal, (float3x3)unity_WorldToObject);
 worldNormal = normalize(worldNormal);
 ```
 
+mul(matrix, vector) == mul(vector, transpose(matrix))
+
+
 ### light dir
 
 [SL-UnityShaderVariables](https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html)

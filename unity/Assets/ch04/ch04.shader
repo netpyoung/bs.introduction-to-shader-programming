@@ -6,8 +6,8 @@
 		{
 			//Tags{ "LightMode" = "ForwardAdd" }
 
-			CGPROGRAM
-
+			HLSLPROGRAM
+			#include "UnityShaderVariables.cginc"
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -64,7 +64,7 @@
 				return float4(ambient + diffuse + specular, 1);
 			}
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }

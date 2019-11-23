@@ -11,10 +11,10 @@
 	{
 		Pass
 		{
-			Tags{ "LightMode" = "ForwardAdd" }
+			//Tags{ "LightMode" = "ForwardAdd" }
 
-			CGPROGRAM
-
+			HLSLPROGRAM
+			#include "UnityShaderVariables.cginc"
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -25,18 +25,18 @@
 
 			struct VS_INPUT
 			{
-			   float4 mPosition : POSITION;
-			   float4 mNormal : NORMAL;
-			   float2 mUV : TEXCOORD0;
+			   float4 mPosition	: POSITION;
+			   float3 mNormal	: NORMAL;
+			   float2 mUV		: TEXCOORD0;
 			};
 
 			struct VS_OUTPUT
 			{
-			   float4 mPosition : SV_Position;
-			   float2 mUV : TEXCOORD0;
-			   float3 mDiffuse : TEXCOORD1;
-			   float3 mViewDirection : TEXCOORD2;
-			   float3 mReflectionDirection : TEXCOORD3;
+			   float4 mPosition				: SV_Position;
+			   float2 mUV					: TEXCOORD0;
+			   float3 mDiffuse				: TEXCOORD1;
+			   float3 mViewDirection		: TEXCOORD2;
+			   float3 mReflectionDirection	: TEXCOORD3;
 			};
 
 			VS_OUTPUT vert(VS_INPUT Input)
@@ -44,7 +44,7 @@
 			   VS_OUTPUT Output;
 
 			   float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
-			   float3 worldNormal = normalize(mul((float3x3)UNITY_MATRIX_M, Input.mNormal));
+			   float3 worldNormal = normalize(mul(Input.mNormal, (float3x3)UNITY_MATRIX_I_M));
 			   float3 lightDirectionUnnormlized = worldPosition.xyz - _WorldSpaceLightPos0.xyz;
 			   float3 lightDirection = normalize(lightDirectionUnnormlized);
 
@@ -58,12 +58,11 @@
 
 			struct PS_INPUT
 			{
-				float2 mUV : TEXCOORD0;
-				float3 mDiffuse : TEXCOORD1;
-				float3 mViewDirection: TEXCOORD2;
-				float3 mReflectionDirection: TEXCOORD3;
+				float2 mUV					: TEXCOORD0;
+				float3 mDiffuse				: TEXCOORD1;
+				float3 mViewDirection		: TEXCOORD2;
+				float3 mReflectionDirection	: TEXCOORD3;
 			};
-
 
 			float4 frag(PS_INPUT Input) : SV_Target
 			{
@@ -71,7 +70,6 @@
 				float3 light_color = unity_LightColor[0].rgb;
 
 				float3 diffuse = light_color * albedo.rgb * saturate(Input.mDiffuse);
-				float3 reflectionDirection = normalize(Input.mReflectionDirection);
 
 				float3 ambient = _BaseColor * albedo;
 				float3 specular = float3(0, 0, 0);
@@ -84,13 +82,13 @@
 					float4 specularIntensity = tex2D(_SpecularTex, Input.mUV);
 					specular *= specularIntensity * light_color;
 				}
-				//return float4(ambient, 1);
-				//return float4(diffuse, 1);
-				//return float4(specular, 1);
+				// return float4(ambient, 1);
+				// return float4(diffuse, 1);
+				// return float4(specular, 1);
 				return float4(ambient + diffuse + specular, 1);
 			}
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }

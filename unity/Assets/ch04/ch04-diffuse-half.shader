@@ -4,7 +4,7 @@ Shader "popo/ch04-half-diffuse"
 	{
 		Pass
 		{
-			Tags { "LightMode" = "ForwardAdd" }
+			//Tags { "LightMode" = "ForwardAdd" }
 
 			HLSLPROGRAM
 			#include "UnityShaderVariables.cginc"

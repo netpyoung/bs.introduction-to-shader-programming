@@ -6,7 +6,8 @@ Shader "popo/ch04-specular-blinn"
 		{
 			//Tags{ "LightMode" = "ForwardAdd" }
 
-CGPROGRAM
+HLSLPROGRAM
+#include "UnityShaderVariables.cginc"
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -58,7 +59,7 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
 
   return float4(blinn_specular, 1);
 }
-ENDCG
+ENDHLSL
 		}
 	}
 }

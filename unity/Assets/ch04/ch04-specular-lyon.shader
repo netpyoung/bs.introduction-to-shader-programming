@@ -6,7 +6,8 @@ Shader "popo/ch04-specular-lyon"
 		{
 			//Tags{ "LightMode" = "ForwardBase" }
 
-CGPROGRAM
+HLSLPROGRAM
+#include "UnityShaderVariables.cginc"
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -62,7 +63,7 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
   float3 specular = float3(Lyon, Lyon, Lyon);
   return float4(specular, 1);
 }
-ENDCG
+ENDHLSL
 		}
 	}
 }
