@@ -88,6 +88,7 @@
 					specular *= specularIntensity * light_color;
 				}
 				
+				// return ambient;
 				return float4(ambient.xyz + diffuse + specular, 1);
 			}
 
