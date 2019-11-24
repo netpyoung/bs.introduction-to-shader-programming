@@ -116,9 +116,9 @@
 				float3 ambient = float3(0.1f, 0.1f, 0.1f) * albedo.xyz;
 
 				//return float4(ambient, 1);
-				// return float4(diffuse, 1);
+				//return float4(diffuse, 1);
 				// return float4(specular, 1);
-				 return float4(diffuse + ambient + specular, 1);
+				return float4(diffuse + ambient + specular, 1);
 				// return float4(1, 1, 1, 1);
 			}
 

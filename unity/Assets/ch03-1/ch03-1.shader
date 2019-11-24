@@ -10,9 +10,11 @@ Shader "popo/ch03-1"
 		Pass
 		{
 
+Tags{ "LightMode" = "UniversalForward"  }
 
 HLSLPROGRAM
-#include "UnityShaderVariables.cginc"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+
 #pragma vertex vs_main
 #pragma fragment ps_main
 
