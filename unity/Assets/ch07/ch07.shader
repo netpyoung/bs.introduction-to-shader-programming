@@ -59,7 +59,7 @@
 				float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
 
 				Output.mPosition = mul(UNITY_MATRIX_VP, worldPosition);
-				Light light = GetAdditionalLight(0, Output.mPosition.xyz);
+				Light light = GetAdditionalLight(0, worldPosition.xyz);
 
 				Output.mUV = Input.mUV;
 				Output.mLightDir = -light.direction;
@@ -68,7 +68,7 @@
 
 				Output.N = normalize(mul(Input.mNormal, (float3x3)unity_WorldToObject));
 				Output.T = normalize(mul((float3x3)UNITY_MATRIX_M, Input.mTangent.xyz));
-				float3 binormal = cross( Input.mNormal, Input.mTangent.xyz ) * Input.mTangent.w;
+				float3 binormal = cross(Input.mNormal, Input.mTangent.xyz ) * Input.mTangent.w;
 				Output.B = normalize(mul((float3x3)UNITY_MATRIX_M, binormal));
 				return Output;
 			}
@@ -91,7 +91,7 @@
 				float3x3 TBN = float3x3(normalize(Input.T), normalize(Input.B), normalize(Input.N));
 				float3 tangentNormal = tex2D(_N_Texture, Input.mUV).xyz;
 				tangentNormal = normalize(tangentNormal * 2 - 1);
-				float3 worldNormal = mul(tangentNormal, TBN);
+				float3 worldNormal = mul(TBN, tangentNormal);
 				
 				float3 lightDir = normalize(Input.mLightDir);
 				float3 diffuse = saturate(dot(worldNormal, -lightDir));
@@ -116,8 +116,9 @@
 				float3 ambient = float3(0.1f, 0.1f, 0.1f) * albedo.xyz;
 
 				//return float4(ambient, 1);
-				//return float4(diffuse, 1);
+				// return float4(diffuse, 1);
 				// return float4(specular, 1);
+				// return float4(diffuse + ambient, 1);
 				return float4(diffuse + ambient + specular, 1);
 				// return float4(1, 1, 1, 1);
 			}

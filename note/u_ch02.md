@@ -2,7 +2,7 @@
 
 유니티는 [ShaderLab][unity: SL-Shader]이라는 자체 쉐이더 언어를 쓴다.
 다만, 일반적으로 쓰는 [Cg]/[HLSL], [GLSL] 쉐이더 코드를 중간에 넣기도한다.
-보통 GLSL코드는 유니티에서 잘 쓰이지 않는 경향이 있으며, 책의 예제와 호환성을 위해 CG코드로 작성한다.
+보통 GLSL코드는 유니티에서 잘 쓰이지 않는 경향이 있으며, 책의 예제와 호환성을 위해 HLSL코드로 작성한다.
 
 ## 기본 쉐이더 모습
 
@@ -61,8 +61,8 @@ Rasterizer를 거쳐 체워진 각 Pixel에 대해 PixelShader가 돌아가게 �
 
 3D오브젝트는 여러점(`vertex`)으로 구성되어있고, 화면에 `pixel`로 표시된다.
 
-* vertex shader는 오브젝트의 각 vertex마다 실행되어, pixel shader에서 쓸 수 있는 정보로 가공한다.
-* pixel shader는 화면에 뿌려지는 오브젝트의 각 pixel마다 수행되며, 띄엄띄엄 있는 vertex보다 pixel이 많으니 pixel shader의 부하 역시 vertex shader보다 크다.
+- vertex shader는 오브젝트의 각 vertex마다 실행되어, pixel shader에서 쓸 수 있는 정보로 가공한다.
+- pixel shader는 화면에 뿌려지는 오브젝트의 각 pixel마다 수행되며, 띄엄띄엄 있는 vertex보다 pixel이 많으니 pixel shader의 부하 역시 vertex shader보다 크다.
 
 ## vertex/pixel shader
 
@@ -79,8 +79,8 @@ Shader "popo/ch02"
         {
             Pass
             {
-                CGPROGRAM
-                ENDCG
+                HLSLPROGRAM
+                ENDHLSL
             }
         }
     }
@@ -106,7 +106,7 @@ Both vertex and fragment programs must be present in a shader snippet. Excluding
 
 그래서 다음과 같이 짜보면 물체가 보이지도 않는다.
 
-``` cg
+``` hlsl
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -122,7 +122,7 @@ float4 ps_main() : SV_Target
 
 물체의 vertex정보가 없기에 무얼 보여줘야할지 모르는 것이다. 좀 보여주도록 하자.
 
-``` shader
+``` hlsl
 #pragma vertex vs_main
 #pragma fragment ps_main
 
@@ -155,8 +155,8 @@ float4 ps_main(VS_OUTPUT Input) : SV_Target
 
 [hlsl-Semantics](https://msdn.microsoft.com/en-us/library/windows/desktop/bb509647)
 
-* VertexShader에서 쓰이는 VS_INPUT의 `POSITION`은 object space의 Vertex position이며 float4 형이다.
-* PixelShader에서 쓰이는 VS_OUTPUT(Pixel Shader입장에서 보면 이놈이 Input이다.)의 `SV_Position`은 screen space의 pixel position이며 float2 형이다.
+- VertexShader에서 쓰이는 VS_INPUT의 `POSITION`은 object space의 Vertex position이며 float4 형이다.
+- PixelShader에서 쓰이는 VS_OUTPUT(Pixel Shader입장에서 보면 이놈이 Input이다.)의 `SV_Position`은 screen space의 pixel position이며 float2 형이다.
 
 ``` shader
     Output.mPosition = mul(UNITY_MATRIX_M, Input.mPosition);
@@ -206,7 +206,7 @@ mul(matrix, vector) == mul(vector, transpose(matrix))
 
 ## 지금은 SurfaceShader는 무시
 
-* https://docs.unity3d.com/Manual/SL-SurfaceShaders.html
+- <https://docs.unity3d.com/Manual/SL-SurfaceShaders.html>
 
 체워넣을 수 있는 쉐이더에는 SurfaceShader랑, vertex/pixel Shader가 있다. Surface는 vertex/pixel shader를 좀 더 편하게 작성할 수 있도록, 유니티가 프리셋을 제시해 준 것이다. 개인적으로는, 이게 있어서 코드 중복성을 줄이는 편리함을 얻게되는대신 지정한 프리셋이 뭔지 알아야하는 2중고를 느껴 별로이다. 하지만 SurfaceShader로 작성된 코드도 많이 보여 무시할 수 없으니, 일단은 vertex/pixel shader를 익힌후 메뉴얼을 뒤지면서 그때그때 공부하는 걸로 하고 넘어가자.
 

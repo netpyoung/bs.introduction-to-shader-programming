@@ -30,8 +30,8 @@
 
 			struct VS_OUTPUT
 			{
-			   float4 mPosition : SV_Position;
-			   float3 mDiffuse : TEXCOORD1;
+				float4 mPosition : SV_Position;
+				float3 mDiffuse : TEXCOORD1;
 			};
 
 			VS_OUTPUT vert(VS_INPUT Input)
@@ -39,9 +39,8 @@
 				VS_OUTPUT Output;
 				Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
 				Light light = GetAdditionalLight(0, Output.mPosition.xyz);
-				float3 lightDirection = -light.direction;
-
-				Output.mDiffuse = dot(Input.mNormal, -lightDirection);
+				float3 lightDir = -light.direction;
+				Output.mDiffuse = dot(mul(UNITY_MATRIX_M, Input.mNormal), -lightDir);
 				return Output;
 			}
 
