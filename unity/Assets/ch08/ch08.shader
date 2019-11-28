@@ -48,7 +48,6 @@
             VS_OUTPUT vs_main(VS_INPUT Input)
             {
                 VS_OUTPUT Output;
-
                 float3 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
                 Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
                 Output.mUV = Input.mUV;
