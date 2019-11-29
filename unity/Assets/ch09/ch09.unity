@@ -128,15 +128,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3a7df121d4e19064389eadc74baa4af8,
-        type: 3}
-      propertyPath: m_Name
-      value: Torus (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
@@ -191,23 +186,28 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4dab635421c3224489fe8a687b7d99ac, type: 2}
+    - target: {fileID: -927199367670048503, guid: 3a7df121d4e19064389eadc74baa4af8,
+        type: 3}
+      propertyPath: m_Name
+      value: g09
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7df121d4e19064389eadc74baa4af8, type: 3}
 --- !u!1001 &986620208
@@ -217,15 +217,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 3a7df121d4e19064389eadc74baa4af8,
-        type: 3}
-      propertyPath: m_Name
-      value: Torus
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
@@ -280,23 +275,28 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 3a7df121d4e19064389eadc74baa4af8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 25b571ed6577f664cacf958fa33c98f8, type: 2}
+    - target: {fileID: -927199367670048503, guid: 3a7df121d4e19064389eadc74baa4af8,
+        type: 3}
+      propertyPath: m_Name
+      value: Torus
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7df121d4e19064389eadc74baa4af8, type: 3}
 --- !u!1 &1036919711

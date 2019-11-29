@@ -56,7 +56,7 @@
                 
                 Output.mUV = Input.mUV + float2(time * _UVSpeed, 0);
                 Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
-                float3 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
+                float3 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition).xyz;
 
                 Light light = GetAdditionalLight(0, worldPosition.xyz);
 				float3 lightDir = -light.direction;
@@ -83,7 +83,7 @@
                     float4 specularIntensity = tex2D(_S_Texture, Input.mUV);
                     specular *= specularIntensity.rgb;
                 }
-                float3 ambient = float3(0.1f, 0.1f, 0.1f) * albedo;
+                float3 ambient = float3(0.1f, 0.1f, 0.1f) * albedo.xyz;
                 return float4(ambient + diffuse + specular, 1);
             }
 

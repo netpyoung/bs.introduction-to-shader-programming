@@ -93,3 +93,11 @@ The following packages were removed:
   com.unity.postprocessing@2.1.7
   com.unity.render-pipelines.lightweight@7.1.1
   com.unity.scriptablebuildpipeline@1.5.4
+
+=== Sun Dec  1 22:27:40 2019
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.vscode from version 1.1.2 to 1.1.3

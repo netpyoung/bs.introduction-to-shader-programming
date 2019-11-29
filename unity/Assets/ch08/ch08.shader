@@ -43,24 +43,25 @@
                 float3 T            : TEXCOORD3;
                 float3 B            : TEXCOORD4;
                 float3 N            : TEXCOORD5;
+                float3 mLightColor  : COLOR1;
             };
 
             VS_OUTPUT vs_main(VS_INPUT Input)
             {
                 VS_OUTPUT Output;
-                float3 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
+                float3 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition).xyz;
                 Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
                 Output.mUV = Input.mUV;
 
                 float3 objBinormal = cross(Input.mNormal, Input.mTangent.xyz) * Input.mTangent.w;
-                Output.T = normalize(mul((float3x3)UNITY_MATRIX_M, Input.mTangent));
+                Output.T = normalize(mul((float3x3)UNITY_MATRIX_M, Input.mTangent.xyz));
                 Output.B = normalize(mul((float3x3)UNITY_MATRIX_M, objBinormal));
                 Output.N = normalize(mul(Input.mNormal, (float3x3)unity_WorldToObject));
 
 		        Light light = GetAdditionalLight(0, worldPosition.xyz);
 				Output.mLightDir = -light.direction;
 				Output.mViewDir = normalize(worldPosition.xyz - _WorldSpaceCameraPos.xyz);
-
+                Output.mLightColor = light.color;
                 return Output;
             }
 
@@ -77,7 +78,7 @@
 
                 float3 viewDir = normalize(Input.mViewDir);
                 float3 lightDir = normalize(Input.mLightDir);
-                float3 diffuse = saturate(dot(worldNormal, -lightDir)) * albedo.rgb;
+                float3 diffuse = saturate(dot(worldNormal, -lightDir)) * albedo.rgb * Input.mLightColor.rgb;
 
                 float3 specular = 0;
                 if (diffuse.x > 0)
@@ -86,7 +87,7 @@
                     specular = saturate(dot(reflection, -viewDir));
                     specular = pow(specular, 20);
                     float4 specularIntensity = tex2D(_S_Texture, Input.mUV);
-                    specular *=  specularIntensity;
+                    specular *=  specularIntensity.xyz;
                 }
 
                 float3 viewReflect = reflect(viewDir, mul(float3(0, 0, 1), TBN));
