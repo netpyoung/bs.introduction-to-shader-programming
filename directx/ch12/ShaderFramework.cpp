@@ -686,14 +686,6 @@ void Cleanup()
 		gpSepia->Release();
 		gpSepia = NULL;
 	}
-	if (gpEdgeDetection) {
-		gpEdgeDetection->Release();
-		gpEdgeDetection = NULL;
-	}
-	if (gpEmboss) {
-		gpEmboss->Release();
-		gpEmboss = NULL;
-	}
 
 	if (gpSceneRenderTarget) {
 		gpSceneRenderTarget->Release();
