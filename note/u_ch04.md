@@ -1,6 +1,6 @@
-# 난반사(diffuse)와 정반사(specular)
+# WIP: 난반사(diffuse)와 정반사(specular)
 
-![](res/500px-Diffuse_reflection.gif)
+![Diffuse_reflection](res/500px-Diffuse_reflection.gif)
 
 ## implement lambert
 

@@ -1,4 +1,4 @@
-# lighting model
+# WIP: lighting model
 
 난반사 - 확산 - diffuse
 

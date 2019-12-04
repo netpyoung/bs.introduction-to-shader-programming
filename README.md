@@ -13,10 +13,10 @@
 
 ## 개발 환경
 
-* [책 소스](http://www.hanbit.co.kr/exam/1949/source.zip)
-* [Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs)
-* [DirectX Software Development Kit](http://www.microsoft.com/en-us/download/details.aspx?id=6812)
-* [RenderMonkey](http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/rendermonkey-toolsuite/)
+- [hanbit: 책 소스](http://www.hanbit.co.kr/exam/1949/source.zip), [github](https://github.com/popekim/ShaderPrimerKR)
+- [Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs)
+- [DirectX Software Development Kit](http://www.microsoft.com/en-us/download/details.aspx?id=6812)
+- [RenderMonkey](http://developer.amd.com/tools-and-sdks/archive/legacy-cpu-gpu-tools/rendermonkey-toolsuite/)
 
 ## 문제해결
 
