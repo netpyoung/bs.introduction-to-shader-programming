@@ -1,4 +1,4 @@
-# ch03
+# 텍스쳐 맵핑
 
 사실 빨강색으로 칠하기만 해서는 쓸모가 없다.
 
@@ -150,10 +150,10 @@ ENDCG
 
 |                 |                                                                                             |
 | --------------- | ------------------------------------------------------------------------------------------- |
-| _Time           | float4	Time since level load (t/20, t, t*2, t*3), use to animate things inside the shaders. |
-| _SinTime        | float4	Sine of time: (t/8, t/4, t/2, t).                                                    |
-| _CosTime        | float4	Cosine of time: (t/8, t/4, t/2, t).                                                  |
-| unity_DeltaTime | float4	Delta time: (dt, 1/dt, smoothDt, 1/smoothDt).                                        |
+| _Time           | float4 Time since level load `(t/20, t, t * 2, t * 3)`, use to animate things inside the shaders. |
+| _SinTime        | float4 Sine of time: (t/8, t/4, t/2, t).                                                    |
+| _CosTime        | float4 Cosine of time: (t/8, t/4, t/2, t).                                                  |
+| unity_DeltaTime | float4 Delta time: (dt, 1/dt, smoothDt, 1/smoothDt).                                        |
 
 ``` csharp
 Material mat;
@@ -181,7 +181,6 @@ VS_OUTPUT vs_main(VS_INPUT Input)
 
     return Output;
 }
-
 ```
 
 [unity: SL-Shader]: https://docs.unity3d.com/Manual/SL-Shader.html

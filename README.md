@@ -20,18 +20,18 @@
 
 ## 문제해결
 
-### DirectX SDK (June 2010) 설치할 때 Error Code S1023
-
-ref: http://appmaid.tistory.com/11
+### [DirectX SDK (June 2010) 설치할 때 Error Code S1023](http://appmaid.tistory.com/11)
 
 1. 기존 Visual C++ 2010 X86/X64 Redistributable Package 제거.
 2. DirectX SDK 설치.
 3. 최신 버전의 Visual C++ 2010 X86/X64 Redistributable Package 설치.
-    - http://www.microsoft.com/ko-kr/download/details.aspx?id=26999
+   - <http://www.microsoft.com/ko-kr/download/details.aspx?id=26999>
 
-### LNK1123 에러
-
-ref: http://ejnahc.tistory.com/412
+### [LNK1123 에러](http://ejnahc.tistory.com/412)
 
 1. Microsoft Visual C++ 2010 Service Pack 1 재배포 가능 패키지 설치.
-    - https://www.microsoft.com/en-us/download/confirmation.aspx?id=23691
+   - <https://www.microsoft.com/en-us/download/confirmation.aspx?id=23691>
+
+## TODO
+
+- <https://en.wikibooks.org/wiki/GLSL_Programming/Unity>

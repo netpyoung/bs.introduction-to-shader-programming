@@ -1,4 +1,4 @@
-# WIP: 난반사(diffuse)와 정반사(specular)
+# TODO: 난반사(diffuse)와 정반사(specular)
 
 ![Diffuse_reflection](res/500px-Diffuse_reflection.gif)
 

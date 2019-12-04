@@ -1,4 +1,4 @@
-# WIP: lighting model
+# TODO: lighting model
 
 난반사 - 확산 - diffuse
 
@@ -167,3 +167,13 @@ Blinn - Phong Specuar
 Anisotropic
 Fresnel effect : Snell's Law
 IBL(image based light)
+
+
+-------------
+
+## 법선 맵핑과 비슷한 기타 고급기법
+
+- 법선맵핑의 문제점 중 하나 : 측면에서 보면 입체감이 떨어진다.
+- parallax mapping : normal map에다 height map을 이용하여 문제를 해결하려함.
+- parallax occlusion mapping : + 인접픽셀과의 높이차를 구한후, 그에 따른 그림자를 입히는 기법.
+- GPU gems, Shader X 참고.
