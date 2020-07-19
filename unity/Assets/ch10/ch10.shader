@@ -58,8 +58,8 @@
             Blend SrcAlpha OneMinusSrcAlpha
 
 			HLSLPROGRAM
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             // #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             // #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
 
@@ -68,7 +68,6 @@
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            // #include "HLSLSupport.cginc"
 
             #pragma vertex vs_main
             #pragma fragment ps_main
