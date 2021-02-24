@@ -36,7 +36,7 @@
 
 			VS_OUTPUT vert(VS_INPUT Input)
 			{
-				VS_OUTPUT Output;
+				VS_OUTPUT Output = (VS_OUTPUT)0;
 				Output.mPosition = mul(UNITY_MATRIX_MVP, Input.mPosition);
 				Light light = GetAdditionalLight(0, Output.mPosition.xyz);
 				float3 lightDir = -light.direction;

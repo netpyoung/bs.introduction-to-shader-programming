@@ -54,7 +54,7 @@
 
 			VS_OUTPUT vert(VS_INPUT Input)
 			{
-				VS_OUTPUT Output;
+				VS_OUTPUT Output = (VS_OUTPUT)0;
 
 				float4 worldPosition = mul(UNITY_MATRIX_M, Input.mPosition);
 

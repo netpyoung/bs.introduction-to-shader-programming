@@ -17,7 +17,7 @@ struct Raw {
     float2 uv;
     float3 normal;
     float3 tangent;
-}
+};
 
 
 struct VS_INPUT
@@ -34,7 +34,7 @@ struct VS_OUTPUT
 
 VS_OUTPUT vs_main(VS_INPUT Input)
 {
-    VS_OUTPUT Output;
+    VS_OUTPUT Output = (VS_OUTPUT)0;
     Output.mPosition = mul(UNITY_MATRIX_M, Input.mPosition);
     Output.mPosition = mul(UNITY_MATRIX_V, Output.mPosition);
     Output.mPosition = mul(UNITY_MATRIX_P, Output.mPosition);
