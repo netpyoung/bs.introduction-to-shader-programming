@@ -90,7 +90,7 @@
                     specular *=  specularIntensity.xyz;
                 }
 
-                float3 viewReflect = reflect(viewDir, mul(float3(0, 0, 1), TBN));
+                float3 viewReflect = reflect(viewDir, worldNormal);// mul(float3(0, 0, 1), TBN));
                 float3 environment = texCUBE(_Cubemap_Texture, viewReflect).rgb;
                 // return float4(environment * 0.5f, 1.0f);
 
