@@ -5,7 +5,7 @@
 		_BaseColor ("_BaseColor", Color) = (1, 1, 1, 1)
 		_D_Texture ("_D_Texture", 2D) = "" {}
 		_S_Texture ("_S_Texture", 2D) = "" {}
-		[Normal] _N_Texture ("_N_Texture", 2D) = "" {}
+		_N_Texture ("_N_Texture", 2D) = "" {}
 	}
 
 	SubShader

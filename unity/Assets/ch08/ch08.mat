@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _D_Texture:
-        m_Texture: {fileID: 2800000, guid: 3121f3b7ee485474c8510248418253e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1dcf89b32e423f441846ba4cff9ad719, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _N_Texture:
-        m_Texture: {fileID: 2800000, guid: 30c453d794db39c4a97bd31b5d71c9c0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5c8994454bab2b6448d9fb4e54032c8b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _S_Texture:
-        m_Texture: {fileID: 2800000, guid: bf265386b9ae2f44bb243b4f4c5e008b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a3d597e09ba71a49ae9d4330653e308, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -90,6 +90,7 @@ Material:
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &5709683192949496358
 MonoBehaviour:
   m_ObjectHideFlags: 11

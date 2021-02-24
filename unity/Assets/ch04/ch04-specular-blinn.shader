@@ -4,7 +4,7 @@ Shader "popo/ch04-specular-blinn"
 	{
 		Pass
 		{
-			//Tags{ "LightMode" = "ForwardAdd" }
+		Tags{ "LightMode" = "UniversalForward"  }
 
 HLSLPROGRAM
 #include "UnityShaderVariables.cginc"

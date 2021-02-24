@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseTex:
-        m_Texture: {fileID: 2800000, guid: ff9097eb9eb13734b8e8c04799957b3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1dcf89b32e423f441846ba4cff9ad719, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -85,3 +85,4 @@ Material:
     - _BaseColor2: {r: 0.735849, g: 0.5935386, b: 0.5935386, a: 1}
     - _Color: {r: 0.86764705, g: 0.26794982, b: 0.26794982, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
