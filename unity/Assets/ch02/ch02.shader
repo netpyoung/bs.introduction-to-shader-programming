@@ -12,7 +12,8 @@ HLSLPROGRAM
 #pragma vertex vs_main
 #pragma fragment ps_main
 
-struct Raw {
+struct Raw
+{
     float4 Postion;
     float2 uv;
     float3 normal;
@@ -22,13 +23,13 @@ struct Raw {
 
 struct VS_INPUT
 {
-   float4 mPosition : POSITION; // << object_Position
+    float4 mPosition : POSITION; // << object_Position
    float2 mUV : TEXCOORD0;      // << obj's coordinate
 };
 
 struct VS_OUTPUT
 {
-   float4 mPosition : SV_Position;
+    float4 mPosition : SV_Position;
    float4 mUV : TEXCOORD0;
 };
 
